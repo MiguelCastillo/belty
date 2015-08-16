@@ -1,6 +1,6 @@
 {
   "name": "belty",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
     "dis-isa": "^1.2.2"
   },
@@ -26,8 +26,7 @@
     "sinon": "~1.15.4",
     "spromise": "^0.9.3"
   },
-  "browser": {
-  },
+  "browser": {},
   "directories": {
     "test": "test"
   },
