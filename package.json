@@ -27,7 +27,6 @@
     "spromise": "^0.9.3"
   },
   "browser": {
-    "types": "dis-isa"
   },
   "directories": {
     "test": "test"
