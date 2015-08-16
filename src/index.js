@@ -13,8 +13,8 @@ function noop(arg) {
 /**
  * Gracefully handle generating an output from an input. The input can be
  * a function, in which case it is called and whatever is returned is
- * the ouput. Otherwise, the rest of the input arguments are processed to
- * to figure out what needs to returned.
+ * the ouput. Otherwise, the rest of the arguments are processed to
+ * to figure out what needs to be returned.
  *
  * If args is a string, then it is used as a key for extracting the value
  * out of input. The value is returned.
@@ -28,7 +28,7 @@ function noop(arg) {
  * aggregated.
  *
  * @param {*} input - If function, it is called and the result is returned.
- *  Otherwise, input is returned.
+ *  Otherwise the rest of the arguments are processed.
  * @param {*} args - Arguments to pass to input when it is a function.
  * @param {*} context - Context used when input is a function.
  *
@@ -68,9 +68,9 @@ function result(input, args, context) {
  * shallow copy.
  *
  * @param {object} target - Object to copy properties to
- * @param {...*} rest - The rest of the arguements are merged into target
+ * @param {...} rest - The rest of the arguements are merged into target
  *
- * @returns {object} Object with all arguments merge in.
+ * @returns {object} Object with all arguments merged in.
  */
 function extend(target) {
   var source, length, i;
@@ -93,9 +93,9 @@ function extend(target) {
  * Deep copy all properties into target object.
  *
  * @param {object} target - Object to copy properties to
- * @param {...*} rest - The rest of the arguements are deeply merged into target
+ * @param {...} rest - The rest of the arguements are deeply merged into target
  *
- * @returns {object} Object with all arguments merge in.
+ * @returns {object} Object with all arguments merged in.
  */
 function merge(target) {
   var source, length, i;
