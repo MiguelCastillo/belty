@@ -68,7 +68,7 @@ function result(input, args, context) {
  * shallow copy.
  *
  * @param {object} target - Object to copy properties to
- * @param {...} rest - The rest of the arguements are merged into target
+ * @param {...} rest - The rest of the arguments are merged into target
  *
  * @returns {object} Object with all arguments merged in.
  */
@@ -93,7 +93,7 @@ function extend(target) {
  * Deep copy all properties into target object.
  *
  * @param {object} target - Object to copy properties to
- * @param {...} rest - The rest of the arguements are deeply merged into target
+ * @param {...} rest - The rest of the arguments are deeply merged into target
  *
  * @returns {object} Object with all arguments merged in.
  */
