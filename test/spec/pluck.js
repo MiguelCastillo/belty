@@ -134,7 +134,7 @@ describe("pluck Suite", function() {
         expect(result.country).to.equal(input.country);
       });
 
-      it("then extracting the key `city` returns `Ann Arbor`", function() {
+      it("then extracting the key `city` returns `undefined`", function() {
         expect(result.test).to.equal(undefined);
       });
     });
