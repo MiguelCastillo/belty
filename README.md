@@ -11,14 +11,15 @@ Noop method - does nothing.
 > With the exception that it can optionally take 1 argument. Whatever the argument passed is, it is just returned. Handy for using in Promise chains that just needs a function to take an input and forward it.
 
 
-#### result(input, args?, context?)
+#### result(input, property, data?, context?)
 
-Gracefully generates an output from `input`. `input` can be a function, in which case it is called, and whatever is returned is the ouput. Otherwise, the input is returned.
+Gracefully handle generating an output from `input`. `input` is an object and if the property in the object is a function, then the function is called and the result is returned. Otherwise, the value from `input[property]` is returned.
 
-- **@param** {any} *input* - If function, it is called and the result is returned. Otherwise `input` is returned.
-- **@param** {any} *args* - Arguments to pass to `input` when it is a function.
-- **@param** {any} *context* - Context used when `input` is a function.
-- **@returns** {any} If `input` is a function, then the result of calling it is returned. Otherwise `input` is returned.
+- **@param** {object} *input* - Object to read `property` from.
+- **@param** {string|number} *property* - Property to read from the `input` object
+- **@param** {array} *data* - Data to be passed to the when value is a function.
+- **@param** {*} *context* - Context used when value is a function.
+- **@returns** {*} result of calling the function or property from `input`.
 
 
 #### pluck(input, keys)
