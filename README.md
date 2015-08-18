@@ -28,7 +28,7 @@ Gracefully generates an output from `input`. `input` can be a function, in which
 
   If `keys` is a string, then it is used as *the* key for extracting the value out of `input`, and returned as the output.
 
-  If `keys` is an object, then all *matching key/values pairs* are extracted from `input`.
+  If `keys` is an object, then all *matching key/value pairs* are extracted from `input`.
 
   If `keys` is an array of strings, then all the values in the array are used as keys to extract the values out of `input`.
 
