@@ -1,116 +1,12 @@
-var utils = require("dist/index");
+var merge = require("src/merge");
+var date = new Date();
 
-describe("utils Suite", function() {
-  describe("when extend into an empty target object", function() {
+describe("merge Suite", function() {
+  describe("when `merge`", function() {
     describe("no object", function() {
       var result;
       beforeEach(function() {
-        result = utils.extend();
-      });
-
-      it("then result is an object", function() {
-        expect(result).to.be.an('object');
-      });
-
-      it("then result object is empty has no properties - it's an empty object", function() {
-        expect(Object.keys(result).length).to.equal(0);
-      });
-    });
-
-    describe("empty object", function() {
-      var result, target;
-      beforeEach(function() {
-        target = {};
-        result = utils.extend(target);
-      });
-
-      it("then result and target are the same object", function() {
-        expect(result).to.equal(target);
-      });
-
-      it("then result is an object", function() {
-        expect(result).to.be.an('object');
-      });
-
-      it("then result object has no proeprties - it's an empty object", function() {
-        expect(Object.keys(result).length).to.equal(0);
-      });
-    });
-
-    describe("three objects", function() {
-      describe("when all object define the same property", function() {
-        var result, target;
-        beforeEach(function() {
-          target = {};
-          result = utils.extend(target, {"one": "dont"}, {"two": "twotest", "one": "onetest"}, {"two": "twotest", "one": "twotest"});
-        });
-
-        it("then result and target are the same object", function() {
-          expect(result).to.equal(target);
-        });
-
-        it("then result is an object", function() {
-          expect(result).to.be.an("object");
-        });
-
-        it("then result.one is 'twotest'", function() {
-          expect(result.one).to.equal("twotest");
-        });
-
-        it("then result.two is 'twotest'", function() {
-          expect(result.two).to.equal("twotest");
-        });
-      });
-    });
-  });
-
-
-  describe("when extend into a non target object", function() {
-    describe("an empty object", function() {
-      var result;
-      beforeEach(function() {
-        result = utils.extend({"one": "dont"}, {"one": "do", "two": "it"});
-      });
-
-      it("then result is an object", function() {
-        expect(result).to.be.an('object');
-      });
-
-      it("then result has two properties", function() {
-        expect(Object.keys(result).length).to.equal(2);
-      });
-    });
-
-    describe("two different objects with property 'one' in all of them", function() {
-      var result;
-      beforeEach(function() {
-        result = utils.extend({"one": "dont"}, {"two": "twotest", "one": "onetest"}, {"two": "twotest", "one": "twotest"});
-      });
-
-      it("result is an object", function() {
-        expect(result).to.be.an("object");
-      });
-
-      it("result object has two properties", function() {
-        expect(Object.keys(result).length).to.equal(2);
-      });
-
-      it("result.one is twotest", function() {
-        expect(result.one).to.equal("twotest");
-      });
-
-      it("result.two is twotest", function() {
-        expect(result.two).to.equal("twotest");
-      });
-    });
-  });
-
-
-  describe("when merge", function() {
-    describe("no object", function() {
-      var result;
-      beforeEach(function() {
-        result = utils.merge();
+        result = merge();
       });
 
       it("then result is an object", function() {
@@ -126,7 +22,7 @@ describe("utils Suite", function() {
       var result, target;
       beforeEach(function() {
         target = {};
-        result = utils.merge(target);
+        result = merge(target);
       });
 
       it("then result is target", function() {
@@ -146,7 +42,7 @@ describe("utils Suite", function() {
       var result, target;
       beforeEach(function() {
         target = {};
-        result = utils.merge(target, {"one": "dont"}, {"two": "twotest", "one": "onetest"});
+        result = merge(target, {"one": "dont"}, {"two": "twotest", "one": "onetest"});
       });
 
       it("then result is target", function() {
@@ -179,13 +75,13 @@ describe("utils Suite", function() {
           packages : []
         };
 
-        var source1 = {
+        var source = {
           packages: [package],
           date: (new Date())
         };
 
-        target = utils.merge({}, defaults, source1);
-        result = utils.merge(target, {"one": ["onetest"]});
+        target = merge({}, defaults, source);
+        result = merge(target, {"one": ["onetest"]});
       });
 
       it("then result is target", function() {
@@ -225,7 +121,7 @@ describe("utils Suite", function() {
       var result, target;
       beforeEach(function() {
         target = {};
-        result = utils.merge(target, {"one": "dont"}, {"two": "twotest", "one": "onetest", "with": {"object": "two deep"}});
+        result = merge(target, {"one": "dont"}, {"two": "twotest", "one": "onetest", "with": {"object": "two deep"}});
       });
 
       it("then result is target", function() {
@@ -273,7 +169,7 @@ describe("utils Suite", function() {
       var result, target;
       beforeEach(function() {
         target = {};
-        result = utils.merge(target, {"one": "dont"}, {"two": "twotest", "one": "onetest", "with": {"object": "two deep", "noway": {"yes":"way"}}});
+        result = merge(target, {"one": "dont"}, {"two": "twotest", "one": "onetest", "with": {"object": "two deep", "noway": {"yes":"way"}}});
       });
 
       it("then result is an object", function() {
@@ -326,9 +222,8 @@ describe("utils Suite", function() {
     });
 
     describe("two objects with three deep nested objects", function() {
-      var date, obj1, obj2, obj3, obj4, obj5, obj6, obj7, target;
+      var obj1, obj2, obj3, obj4, obj5, obj6, obj7, target;
       beforeEach(function() {
-        date = new Date();
         obj1 = {"modules": {"no": {"item": "hello"}, "yes": {"item": date}}};
         obj2 = {"modules": {"no": {"item": "status1"}}};
         obj3 = {"modules": {"no": {"item": "overriden1"}}};
@@ -336,7 +231,7 @@ describe("utils Suite", function() {
         obj5 = {"modules": {"no": {"item": "overriden3"}}};
         obj6 = {"modules": {"no": {"item": "overriden4"}}};
         obj7 = {"modules": {"no": {"item": "overriden5"}}};
-        target = utils.merge({}, obj1, obj2, obj3, obj4, obj5, obj6, obj7);
+        target = merge({}, obj1, obj2, obj3, obj4, obj5, obj6, obj7);
       });
 
       it("then original obj1.no is an object", function() {
@@ -455,10 +350,9 @@ describe("utils Suite", function() {
         expect(target.modules.yes.item).to.be.a("date");
       });
 
-      it("then result module.yes.item is", function() {
+      it("then result module.yes.item is date", function() {
         expect(target.modules.yes.item).to.equal(date);
       });
     });
   });
-
 });
