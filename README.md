@@ -13,21 +13,24 @@ Noop method - does nothing.
 
 #### result(input, args?, context?)
 
-Gracefully generates an output from `input`. `input` can be a function, in which case it is called, and whatever is returned is the ouput. Otherwise, the rest of the arguments are processed to determine what needs to be returned.
+Gracefully generates an output from `input`. `input` can be a function, in which case it is called, and whatever is returned is the ouput. Otherwise, the input is returned.
 
-- **@param** {any} *input* - If function, it is called and the result is returned. Otherwise the rest of the arguments are processed.
-
-- **@param** {any} *args* - Arguments to pass to `input` when it is a function, otherwise used as keys to extract data from `input`.
-
-  If `args` is a string, then it is used as a key for extracting the value out of `input`, and returned as the output.
-
-  If `args` is an object, then all the keys in args are used for extracting the values out of `input`. An object is created and all the values are aggregated.
-
-  If `args` is an array, then all the values in the array are used as keys for extracting the values out of `input`. An object is created and all the values are aggregated.
-
+- **@param** {any} *input* - If function, it is called and the result is returned. Otherwise `input` is returned.
+- **@param** {any} *args* - Arguments to pass to `input` when it is a function.
 - **@param** {any} *context* - Context used when `input` is a function.
+- **@returns** {any} If `input` is a function, then the result of calling it is returned. Otherwise `input` is returned.
 
-- **@returns** {any} If `input` is a function, then the result of calling it is returned. Otherwise args are processed to determine what is returned.
+
+#### pluck(input, keys)
+
+- **@param** {object} *input* - Object to extract data from.
+- **@param** {string|string[]|object} *keys* - Items to extract from `input`.
+
+  If `keys` is a string, then it is used as *the* key for extracting the value out of `input`, and returned as the output.
+
+  If `keys` is an object, then all *matching key/values pairs* are extracted from `input`.
+
+  If `keys` is an array of strings, then all the values in the array are used as keys to extract the values out of `input`.
 
 
 #### extend(target, ...)
@@ -35,20 +38,16 @@ Gracefully generates an output from `input`. `input` can be a function, in which
 Copies all properties from input objects into `target` object. This is a shallow copy.
 
 - **@param** {object} *target* - Object to copy properties to.
-
 - **@param** {...} *rest* - Arguments to be merged into `target`. Can be `n` items.
-
 - **@returns** {object} Object with all arguments merged in.
 
 
 #### merge(target, ...)
 
-Deep copy all properties from input objects into `target` object. This is will recursively process object. All other are copied as is, including arrays.
+Deep copy all properties from input objects into `target` object. This is will recursively process object and all other are copied as is, including arrays.
 
 - **@param** {object} *target* - Object to copy properties to.
-
 - **@param** {...} *rest* - Arguments to be *recursively* merged into `target`. Can be `n` items.
-
 - **@returns** {object} Object with all arguments merged in.
 
 

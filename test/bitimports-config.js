@@ -3,13 +3,14 @@ var System = (function() {
   var importer = bitimports.config({
     "baseUrl": "../",
     "paths": {
-      "chai": "node_modules/chai/chai"
+      "chai": "node_modules/chai/chai",
+      "dis-isa": "node_modules/dis-isa/dist/index"
     },
     "urlArgs": 'bust=' + (new Date()).getTime()
   });
 
   // Add modules to exclude from pipeline processing
-  importer.ignore(["chai", "dist/index"]);
+  importer.ignore(["chai"]);
 
   bitimports.Logger.enableAll();
   return importer;
