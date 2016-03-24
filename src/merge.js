@@ -1,4 +1,4 @@
-var types = require('dis-isa');
+var types = require("dis-isa");
 
 /**
  * Deep copy all properties from the input objects (sources) into the target object.

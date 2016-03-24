@@ -1,4 +1,4 @@
-var types = require('dis-isa');
+var types = require("dis-isa");
 
 /**
  * Method that extracts key value pairs from the input object.

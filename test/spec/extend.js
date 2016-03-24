@@ -9,7 +9,7 @@ describe("extend Suite", function() {
       });
 
       it("then result is an object", function() {
-        expect(result).to.be.an('object');
+        expect(result).to.be.an("object");
       });
 
       it("then result object is empty has no properties - it's an empty object", function() {
@@ -29,7 +29,7 @@ describe("extend Suite", function() {
       });
 
       it("then result is an object", function() {
-        expect(result).to.be.an('object');
+        expect(result).to.be.an("object");
       });
 
       it("then result object has no proeprties - it's an empty object", function() {
@@ -73,7 +73,7 @@ describe("extend Suite", function() {
       });
 
       it("then result is an object", function() {
-        expect(result).to.be.an('object');
+        expect(result).to.be.an("object");
       });
 
       it("then result has two properties", function() {

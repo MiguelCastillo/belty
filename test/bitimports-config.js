@@ -1,4 +1,4 @@
-/* jshint unused: false, undef: false */
+/*eslint no-unused-vars: 0*/
 var System = (function() {
   var importer = bitimports.config({
     "baseUrl": "../",
@@ -7,7 +7,7 @@ var System = (function() {
       "dis-isa": "node_modules/dis-isa/dist/index",
       "split-keypath": "node_modules/split-keypath/dist/index"
     },
-    "urlArgs": 'bust=' + (new Date()).getTime()
+    "urlArgs": "bust=" + (new Date()).getTime()
   });
 
   // Add modules to exclude from pipeline processing
