@@ -1,11 +1,11 @@
-var noop = require("src/noop");
+var identity = require("src/identity");
 
-describe("noop Suite", function() {
+describe("Identity Suite", function() {
   describe("when calling `noop`", function() {
     describe("with no arguments", function() {
       var result;
       beforeEach(function() {
-        result = noop();
+        result = identity();
       });
 
       it("then result is `undefined`", function() {
@@ -16,22 +16,22 @@ describe("noop Suite", function() {
     describe("with an argument", function() {
       var result;
       beforeEach(function() {
-        result = noop(1);
+        result = identity(1);
       });
 
-      it("then result is `undefined`", function() {
-        expect(result).to.equal(undefined);
+      it("then result is `1`", function() {
+        expect(result).to.equal(1);
       });
     });
 
     describe("with multiple arguments", function() {
       var result;
       beforeEach(function() {
-        result = noop(1, 2, 3);
+        result = identity(1, 2, 3);
       });
 
-      it("then result is `undefined`", function() {
-        expect(result).to.equal(undefined);
+      it("then result is `1`", function() {
+        expect(result).to.equal(1);
       });
     });
   });

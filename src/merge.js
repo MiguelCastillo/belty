@@ -1,12 +1,14 @@
 var types = require('dis-isa');
 
 /**
- * Deep copy all properties into target object.
+ * Deep copy all properties from the input objects (sources) into the target object.
+ * Properties are copied from left to right overriding whatever values that already
+ * exist in the resulting object.
  *
  * @param {object} target - Object to copy properties to
- * @param {...} rest - The rest of the arguments are deeply merged into target
+ * @param {...} source - The source objects to be merged into the target object
  *
- * @returns {object} Object with all arguments merged in.
+ * @returns {object} Object with all source objects merged in.
  */
 function merge(target) {
   var source, length, i;
