@@ -1,12 +1,12 @@
-var pluck = require('./pluck');
-var extend = require('./extend');
-var merge = require('./merge');
-var identity = require('./identity');
-var noop = require('./noop');
-var objectValue = require('./objectValue');
-var objectValues = require('./objectValues');
-var arrayToObject = require('./arrayToObject');
-var value = require('./value');
+var pluck = require("./pluck");
+var extend = require("./extend");
+var merge = require("./merge");
+var identity = require("./identity");
+var noop = require("./noop");
+var objectValue = require("./objectValue");
+var objectValues = require("./objectValues");
+var arrayToObject = require("./arrayToObject");
+var value = require("./value");
 
 module.exports = {
   result: value,

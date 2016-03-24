@@ -1,4 +1,4 @@
-var types = require('dis-isa');
+var types = require("dis-isa");
 
 /**
  * Gets the values from a map and returns them in an array. If an array is passed in, then the array is returned as is.

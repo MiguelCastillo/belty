@@ -1,4 +1,4 @@
-var types = require('dis-isa');
+var types = require("dis-isa");
 
 /**
  * Method that uses the input to derive a return value.

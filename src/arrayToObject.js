@@ -1,4 +1,4 @@
-var value = require('./value');
+var value = require("./value");
 
 /**
  * Converts array to a literal object with the array values used as keys. So this is

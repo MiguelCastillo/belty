@@ -10,7 +10,7 @@ describe("merge Suite", function() {
       });
 
       it("then result is an object", function() {
-        expect(result).to.be.an('object');
+        expect(result).to.be.an("object");
       });
 
       it("then result object has no properties - it's an empty object ", function() {
@@ -30,7 +30,7 @@ describe("merge Suite", function() {
       });
 
       it("then result is an object", function() {
-        expect(result).to.be.an('object');
+        expect(result).to.be.an("object");
       });
 
       it("then result has no properties - it's an empty object", function() {
@@ -63,9 +63,9 @@ describe("merge Suite", function() {
     });
 
     describe("two objects with the same property of type `Array` using a defaults object", function() {
-      var result, target, defaults, package;
+      var result, target, defaults, packageData;
       beforeEach(function() {
-        package = {
+        packageData = {
           location : "tests",
           main     : "main",
           name     : "js"
@@ -76,7 +76,7 @@ describe("merge Suite", function() {
         };
 
         var source = {
-          packages: [package],
+          packages: [packageData],
           date: (new Date())
         };
 
@@ -109,7 +109,7 @@ describe("merge Suite", function() {
       });
 
       it("then result.packages[0] is `package`", function() {
-        expect(result.packages[0]).to.deep.equal(package);
+        expect(result.packages[0]).to.deep.equal(packageData);
       });
 
       it("then result.date is a Date", function() {

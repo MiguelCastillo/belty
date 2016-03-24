@@ -1,5 +1,5 @@
-var value = require('./value');
-var splitKeypath = require('split-keypath');
+var value = require("./value");
+var splitKeypath = require("split-keypath");
 
 /**
  * Extract values from an input object for a given keypath. This will call any
