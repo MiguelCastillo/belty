@@ -1,11 +1,8 @@
 /**
- * Noop method. You can pass in an argument and it will be returned as is.
- *
- * @param {*} arg - Argument to be returned. This is completely optional
- * @returns {*} This returns whatever is passed in.
+ * noop method. It takes no arguments and does not return anything. Useful
+ * when you need to setup an initial placeholder function.
  */
-function noop(arg) {
-  return arg;
+function noop() {
 }
 
 module.exports = noop;

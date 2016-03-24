@@ -1,3 +1,5 @@
+/*jshint -W030 */
+
 var pluck = require("src/pluck");
 
 describe("pluck Suite", function() {
@@ -44,8 +46,8 @@ describe("pluck Suite", function() {
         result = pluck(input, "hello");
       });
 
-      it("then extracting the key `hello` returns `hello world!`", function() {
-        expect(result).to.equal(input.hello);
+      it("then extracting the key `hello` returns `{'hello': hello world!}`", function() {
+        expect(result).to.deep.equal(input);
       });
     });
 
@@ -58,8 +60,8 @@ describe("pluck Suite", function() {
         result = pluck(input, "world");
       });
 
-      it("then extracting the key `world` returns `undefined`", function() {
-        expect(result).to.equal(undefined);
+      it("then extracting the key `world` returns `{}`", function() {
+        expect(result).to.be.empty;
       });
     });
 
@@ -79,7 +81,7 @@ describe("pluck Suite", function() {
       });
     });
 
-    describe("with an input object and a key/value object that exist and a key/value object that does not exist", function() {
+    describe("with an input object with two matching keys", function() {
       var result, input;
       beforeEach(function() {
         input = {
@@ -90,12 +92,11 @@ describe("pluck Suite", function() {
         result = pluck(input, {"country": "USA", "city": "Ann Arbor 123"});
       });
 
-      it("then extracting the key `country` returns `USA`", function() {
-        expect(result.country).to.equal(input.country);
-      });
-
-      it("then extracting the key `city` returns `undefined`", function() {
-        expect(result.city).to.equal(undefined);
+      it("then the two existing keys generates an object with the two values", function() {
+        expect(result).to.deep.equal({
+          "country": "USA",
+          "city": "Ann Arbor"
+        });
       });
     });
 
@@ -110,12 +111,15 @@ describe("pluck Suite", function() {
         result = pluck(input, ["country", "city"]);
       });
 
-      it("then extracting the key `country` returns `USA`", function() {
-        expect(result.country).to.equal(input.country);
+      it("then the two existing keys generates an object with the two values", function() {
+        expect(result).to.deep.equal({
+          "country": "USA",
+          "city": "Ann Arbor"
+        });
       });
 
-      it("then extracting the key `city` returns `Ann Arbor`", function() {
-        expect(result.city).to.equal(input.city);
+      it("then the value with no matching key is never returned", function() {
+        expect(result.zipCode).to.equal(undefined);
       });
     });
 
@@ -130,8 +134,10 @@ describe("pluck Suite", function() {
         result = pluck(input, ["country", "test"]);
       });
 
-      it("then extracting the key `country` returns `USA`", function() {
-        expect(result.country).to.equal(input.country);
+      it("then the two existing keys generates an object with the two values", function() {
+        expect(result).to.deep.equal({
+          "country": "USA"
+        });
       });
 
       it("then extracting the key `city` returns `undefined`", function() {

@@ -4,7 +4,8 @@ var System = (function() {
     "baseUrl": "../",
     "paths": {
       "chai": "node_modules/chai/chai",
-      "dis-isa": "node_modules/dis-isa/dist/index"
+      "dis-isa": "node_modules/dis-isa/dist/index",
+      "split-keypath": "node_modules/split-keypath/dist/index"
     },
     "urlArgs": 'bust=' + (new Date()).getTime()
   });
@@ -12,8 +13,6 @@ var System = (function() {
   // Add modules to exclude from pipeline processing
   importer.ignore(["chai"]);
 
-  bitimports.Logger.enableAll();
+  bitimports.logger.enable();
   return importer;
 })();
-
-var require = System.require;

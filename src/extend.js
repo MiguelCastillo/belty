@@ -1,11 +1,12 @@
 /**
- * Copies all properties from sources into target object. This is a
- * shallow copy.
+ * Shallow copies all properties from the input objects (sources) into the target
+ * object. Source objects are processed left to right overriding whatever values
+ * already exist in the resulting.
  *
  * @param {object} target - Object to copy properties to
- * @param {...} rest - The rest of the arguments are merged into target
+ * @param {...} source - The source objects to be merged into the target object
  *
- * @returns {object} Object with all arguments merged in.
+ * @returns {object} Object with all source objects merged in.
  */
 function extend(target) {
   var source, length, i;
