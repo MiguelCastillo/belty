@@ -1,4 +1,5 @@
-var value = require("./value");
+var indentity = require("./identity");
+var types = require("dis-isa");
 
 /**
  * Converts array to a literal object with the array values used as keys. So this is
@@ -8,16 +9,23 @@ var value = require("./value");
  * @param { array } input - Items to convert to a map
  * @param { *? } val - Can be a function, in which case it is called with the currect
  *  item in the array being processed in order to derive the value for the map entry.
- *  If a value of any other type is provided, that is used for populating each entry
- *  in the resulting map. Or if a value is not provided, all entries will be initialized
- *  to `true`
+ *  Otherwise the value will be the same as the value in the array, which will also
+ *  be the key.
  *
  * @returns { object } Object will all the array values as keys and the derived
  *  values
  */
-function arrayToObject(input, val) {
-  return input.reduce(function(container, key) {
-    container[key] = value(val, [key, input], null, true);
+function arrayToObject(input, fn) {
+  var defaultValue = true;
+  if (arguments.length !== 1) {
+    if (!types.isFunction(fn)) {
+      defaultValue = fn;
+      fn = false;
+    }
+  }
+
+  return input.reduce(function(container, value, key) {
+    container[value] = fn ? fn(value, key, input) : defaultValue;
     return container;
   }, {});
 }

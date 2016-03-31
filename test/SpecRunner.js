@@ -4,4 +4,5 @@ require("test/spec/merge");
 require("test/spec/identity");
 require("test/spec/noop");
 require("test/spec/objectValue");
-require("test/spec/pluck");
+require("test/spec/pick");
+require("test/spec/omit");

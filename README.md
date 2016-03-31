@@ -17,13 +17,26 @@ Helper method that returns the first argument passed in.
 noop method! It takes no arguments and does not return anything. Useful when you need to setup an initial placeholder function.
 
 
-#### pluck(input, keys)
+#### pick(input, keys)
+
+> Alias `pluck`
 
 Method that extracts key value pairs from the input object.
 
-- **@param** {object} *input* - Object to extract data from.
-- **@param** {string|string[]|object} *keys* - Items to extract from `input`.
-- **@returns** {object} Object with key value pairs of extracted data.
+- **@param** {object} *input* - Object to generate data from.
+- **@param** {string|string[]|object} *keys* - Key/value pairs to extract from `input`.
+- **@returns** {object} Object with key value pairs of only the matching *keys*.
+
+
+#### omit(input, keys)
+
+Method that take an object as the input and generates another **omitting** (without) the keys specified.
+
+Opposite of *pick*
+
+- **@param** {object} *input* - Object to generate data from.
+- **@param** {string|string[]|object} *keys* - Key/value pairs to exclude from `input`.
+- **@returns** {object} Object with key value pairs without the matching *keys*.
 
 
 #### extend(target, ...)
@@ -59,12 +72,11 @@ If the input is a function, then the function is called with the args passed in.
 
 #### objectValue(input, keypath)
 
-Extract values from an input object for a given keypath. This will call any functions along the way of extracting the final value.
+Extract values from an input object for a given keypath.
 
 - **@param** {object} input - Object to read `property` from.
-- **@param** {string|number} keypath - keypath for the value in the object.
+- **@param** {string|number|array} keypath - keypath for the value in the object.
 - **@returns** {*} The value for the corresponding keypath.
-
 
 
 #### objectValues(input)
@@ -76,9 +88,9 @@ Gets the values from a map and returns them in an array. If an array is passed i
 
 
 
-#### arrayToObject(input, val)
+#### arrayToObject(input, fn)
 
-Converts array to a literal object with the array values used as keys. So this is to be used for converting an array of string/number entries to a literal object with those values as the keys for the new object. The values in the new object are all by default set to `true`. However, you can specify a default value or a function that gets called with the array key and entire array. This allows you customize the values that get inserted into the resulting object.
+Converts arrays to a literal objects with the array values as keys. You can optionally pass in a callback function that is called in order to generate the values that go in the final result. `fn` can also just be anything to be used as the value for each entry in the final result, otherwise `true` is used.
 
 - **@param** { array } input - Items to convert to a map
 - **@param** { *? } val - Can be a function, in which case it is called with the currect item in the array being processed in order to derive the value for the map entry. If a value of any other type is provided, that is used for populating each entry in the resulting map. Or if a value is not provided, all entries will be initialized to `true`
@@ -86,6 +98,4 @@ Converts array to a literal object with the array values used as keys. So this i
 
 
 
-### License
-
-MIT
+### License MIT
