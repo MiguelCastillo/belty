@@ -48,11 +48,11 @@ describe("arrayToObject suite", function() {
       });
 
       it("then the function for handling the first item is called", function() {
-        sinon.assert.calledWith(stub, 1, input);
+        sinon.assert.calledWith(stub, 1, 0, input);
       });
 
       it("then the function for handling the second item is called", function() {
-        sinon.assert.calledWith(stub, 3.2, input);
+        sinon.assert.calledWith(stub, 3.2, 1, input);
       });
 
       it("then the result contains the results from calling the function", function() {

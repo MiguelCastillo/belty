@@ -1,4 +1,5 @@
-var pluck = require("./pluck");
+var pick = require("./pick");
+var omit = require("./omit");
 var extend = require("./extend");
 var merge = require("./merge");
 var identity = require("./identity");
@@ -10,7 +11,9 @@ var value = require("./value");
 
 module.exports = {
   result: value,
-  pluck: pluck,
+  pluck: pick,
+  pick: pick,
+  omit: omit,
   extend: extend,
   merge: merge,
   identity: identity,

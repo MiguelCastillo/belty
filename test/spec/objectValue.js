@@ -34,48 +34,61 @@ describe("objectValue Suite", function() {
       });
 
       it("then the function is called", function() {
-        sinon.assert.calledOnce(input.body);
-      });
-
-      it("then the function is called with the corresponding arguments", function() {
-        sinon.assert.calledWithExactly(input.body, input.body, "body", input);
+        sinon.assert.notCalled(input.body);
       });
 
       it("then the function does not return anything", function() {
-        expect(output).to.equal(undefined);
+        expect(output).to.equal(input.body);
       });
     });
 
     describe("with an object with nested objects", function() {
-      var input, output, goodStub, returnValue;
+      var input, output, goodValue, returnValue, transform;
 
       beforeEach(function() {
         returnValue = "it should read this value";
-        goodStub = sinon.stub().returns(returnValue);
+        goodValue = "override value";
+        transform = sinon.stub();
+        transform.withArgs("override value").returns(returnValue);
 
         input = {
           "a":{
             "b": [{}, {
               "bad": "it should not read this value"
             }, {
-              "good": goodStub
+              "good": goodValue
             }]
           }
         };
-
-        output = objectValue(input, "a.b[2].good");
       });
 
-      it("then the correct value is read from the nested keypath", function() {
-        expect(output).to.equal(returnValue);
+      describe("and reading a nested value with a string keypath", function() {
+        beforeEach(function() {
+          output = objectValue(input, "a.b[2].good", transform);
+        });
+
+        it("then the correct value is read from the nested keypath", function() {
+          expect(output).to.equal(returnValue);
+        });
+
+        it("then the method in the input object to read the value was called with the corresponding arguments", function() {
+          sinon.assert.calledWith(transform, goodValue, ["a", "b", "2", "good"], input);
+        });
       });
 
-      it("then the method in the input object to read the value was called once", function() {
-        sinon.assert.calledOnce(goodStub);
-      });
 
-      it("then the method in the input object to read the value was called with the corresponding arguments", function() {
-        sinon.assert.calledOnce(goodStub, goodStub, "good", input);
+      describe("and reading a nested value with an array keypath", function() {
+        beforeEach(function() {
+          output = objectValue(input, ["a", "b", "2", "good"], transform);
+        });
+
+        it("then the correct value is read from the nested keypath", function() {
+          expect(output).to.equal(returnValue);
+        });
+
+        it("then the method in the input object to read the value was called with the corresponding arguments", function() {
+          sinon.assert.calledWith(transform, goodValue, ["a", "b", "2", "good"], input);
+        });
       });
     });
   });
