@@ -1,7 +1,7 @@
 var env = require("./env");
 
 module.exports = {
-  build: {
+  test: {
     files: ['src/**/*.js', 'test/**/*.js', '*.js'],
     tasks: ['build'],
     options: {
