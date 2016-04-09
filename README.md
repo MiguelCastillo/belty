@@ -219,7 +219,7 @@ var result = objectValue(input, ["car", "interior", "seats"]);
 
 #### objectValues(input)
 
-Gets the values from a map and returns them in an array. If an array is passed in, then the array is returned as is.
+Gets the values from a object map and returns them in an array. If an array is passed in, then the array is returned as is.
 
 - **@param** {object | Array} input - Input to get values from
 - **@returns** { Array } - Array of all the values extracted from the input object, or the array itself if the input is an array.
@@ -238,6 +238,62 @@ var result = objectValues(input);
 ```
 
 
+#### arrayToObject(input, val)
+
+Converts arrays to a literal objects with the array values as keys. You can optionally pass in a callback function that is called in order to generate the values that go in the final result. `val` can also just be anything to be used as the value for each entry in the final result, otherwise `true` is used.
+
+This method is useful in situation where you need to use a lookup table.
+
+- **@param** { array } input - Items to convert to a map
+- **@param** { *? } val - Can be a function, in which case it is called with the currect item in the array being processed in order to derive the value for the map entry. If a value of any other type is provided, that is used for populating each entry in the resulting map. Or if a value is not provided, all entries will be initialized to `true`
+- **@returns** { object } Object will all the array values as keys and the derived values.
+
+
+``` javascript
+var input = ["first", "last", "GPS", "location"];
+var result = arrayToObject(input);
+
+// result is an object with the array items as the the keys for the object
+// {
+//   "first": true,
+//   "last": true,
+//   "GPS": true,
+//   "location": true
+// }
+```
+
+``` javascript
+var input = ["first", "last", "GPS", "location"];
+var result = arrayToObject(input, 3.14);
+
+// result is an object with the array items as the the keys for the object
+// {
+//   "first": 3.14,
+//   "last": 3.14,
+//   "GPS": 3.14,
+//   "location": 3.14
+// }
+```
+
+
+``` javascript
+var input = ["first", "last", "GPS", "location"];
+var result = arrayToObject(input, transform);
+
+function transform(value, key, array) {
+  return value + "-" + key;
+}
+
+// result is an object with the array items as the the keys for the object
+// {
+//   "first": "first-0",
+//   "last": "last-1",
+//   "GPS": "GPS-2",
+//   "location": "location-3"
+// }
+```
+
+
 #### value(input, args, context, defaultValue)
 > Alias `result`
 
@@ -249,16 +305,6 @@ If the input is a function, then the function is called with the args passed in.
 - **@param** {array} args - Arguments to be passed into the input when it is a function.
 - **@param** {*} defaultValue - value to be returned in case the input is not defined.
 - **@returns** {*} The derived value
-
-
-#### arrayToObject(input, fn)
-
-Converts arrays to a literal objects with the array values as keys. You can optionally pass in a callback function that is called in order to generate the values that go in the final result. `fn` can also just be anything to be used as the value for each entry in the final result, otherwise `true` is used.
-
-- **@param** { array } input - Items to convert to a map
-- **@param** { *? } val - Can be a function, in which case it is called with the currect item in the array being processed in order to derive the value for the map entry. If a value of any other type is provided, that is used for populating each entry in the resulting map. Or if a value is not provided, all entries will be initialized to `true`
-- **@returns** { object } Object will all the array values as keys and the derived values.
-
 
 
 ### License MIT

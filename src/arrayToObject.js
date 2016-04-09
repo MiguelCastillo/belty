@@ -15,17 +15,17 @@ var types = require("dis-isa");
  * @returns { object } Object will all the array values as keys and the derived
  *  values
  */
-function arrayToObject(input, fn) {
+function arrayToObject(input, val) {
   var defaultValue = true;
   if (arguments.length !== 1) {
-    if (!types.isFunction(fn)) {
-      defaultValue = fn;
-      fn = false;
+    if (!types.isFunction(val)) {
+      defaultValue = val;
+      val = false;
     }
   }
 
   return input.reduce(function(container, value, key) {
-    container[value] = fn ? fn(value, key, input) : defaultValue;
+    container[value] = val ? val(value, key, input) : defaultValue;
     return container;
   }, {});
 }
