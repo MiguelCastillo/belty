@@ -109,7 +109,7 @@ var input2 = {
 var result = extend({}, input1, input2);
 
 // result is a shallow copy of the input. So changing anything in address
-// in the result will also change it input.
+// in the result will also change input.
 //{
 //  first: "Mgnum",
 //  last: "Rusty",
