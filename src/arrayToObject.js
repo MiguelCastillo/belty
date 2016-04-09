@@ -1,4 +1,3 @@
-var indentity = require("./identity");
 var types = require("dis-isa");
 
 /**
