@@ -85,7 +85,7 @@ var result = omit(input, ["first"]);
 
 #### extend(target, ...)
 
-Shallow copies all properties from the input objects (sources) into the target object. Source objects are processed left to right overriding whatever values already exist in the resulting.
+Shallow copies all properties from the input objects (sources) into the target object. Source objects are processed left to right overriding whatever values already exist in the result.
 
 - **@param** {object} *target* - Object to copy properties to.
 - **@param** {...} *source* - The source objects to be merged into the target object
