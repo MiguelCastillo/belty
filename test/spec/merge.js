@@ -2,7 +2,7 @@ var merge = require("src/merge");
 var date = new Date();
 
 describe("merge Suite", function() {
-  describe("when `merge`", function() {
+  describe("when merging", function() {
     describe("no object", function() {
       var result;
       beforeEach(function() {
@@ -62,26 +62,31 @@ describe("merge Suite", function() {
       });
     });
 
-    describe("two objects with the same property of type `Array` using a defaults object", function() {
-      var result, target, defaults, packageData;
+    describe("two objects with the same property of type `Array`, and then merging more data into the first result", function() {
+      var result, target, defaults, source1, source2;
       beforeEach(function() {
-        packageData = {
-          location : "tests",
-          main     : "main",
-          name     : "js"
-        };
-
         defaults = {
-          packages : []
+          packages : [{
+            initial: "state"
+          }, {
+            foo: "zball"
+          }]
         };
 
-        var source = {
-          packages: [packageData],
+        source1 = {
+          packages: [{
+            location : "tests",
+            main     : "main",
+            name     : "js"
+          }, {
+            bar: "stool"
+          }],
           date: (new Date())
         };
 
-        target = merge({}, defaults, source);
-        result = merge(target, {"one": ["onetest"]});
+        source2 = {"one": ["onetest"]};
+        target = merge({}, defaults, source1);
+        result = merge(target, source2);
       });
 
       it("then result is target", function() {
@@ -92,11 +97,11 @@ describe("merge Suite", function() {
         expect(result).to.be.an("object");
       });
 
-      it("then defaults.packages is an empty array", function() {
-        expect(defaults.packages.length).to.equal(0);
+      it("then defaults object has 2 package", function() {
+        expect(defaults.packages.length).to.equal(2);
       });
 
-      it("then defaults.date is undefined", function() {
+      it("then defaults object does not have a date", function() {
         expect(defaults.date).to.equal(undefined);
       });
 
@@ -104,15 +109,43 @@ describe("merge Suite", function() {
         expect(result.one).to.be.an("Array");
       });
 
-      it("then result.packages has length of 1", function() {
-        expect(result.packages.length).to.equal(1);
+      it("then result.one is NOT the same array as what is in the input", function() {
+        expect(result.one).to.not.equal(source2.one);
       });
 
-      it("then result.packages[0] is `package`", function() {
-        expect(result.packages[0]).to.deep.equal(packageData);
+      it("then result.one has the same content as what is in the input", function() {
+        expect(result.one).to.eql(source2.one);
       });
 
-      it("then result.date is a Date", function() {
+      it("then result has 2 packages", function() {
+        expect(result.packages.length).to.equal(2);
+      });
+
+      it("then result's first package has different content than the input", function() {
+        expect(result.packages[0]).to.not.eql(source1.packages[0]);
+      });
+
+      it("then result's first package is the aggregated data from all the inputs", function() {
+        expect(result.packages[0]).to.eql({
+          initial  : "state",
+          location : "tests",
+          main     : "main",
+          name     : "js"
+        });
+      });
+
+      it("then result's second package has different content than the input", function() {
+        expect(result.packages[1]).to.not.eql(source1.packages[1]);
+      });
+
+      it("then results's second package has the aggregated data from all the inputs", function() {
+        expect(result.packages[1]).to.eql({
+          foo: "zball",
+          bar: "stool"
+        });
+      });
+
+      it("then result has a datte", function() {
         expect(result.date).to.be.a("Date");
       });
     });
