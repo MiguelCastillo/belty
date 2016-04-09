@@ -413,7 +413,7 @@ describe("merge Suite", function() {
       });
     });
 
-    describe("with a custom updater that concats arrays", function() {
+    describe("with a custom transform that concats arrays", function() {
       var result, source1, source2;
 
       beforeEach(function() {
@@ -426,9 +426,9 @@ describe("merge Suite", function() {
           data: [4, 5, 6]
         };
 
-        result = merge({}, [source1, source2], updater);
+        result = merge({}, [source1, source2], transform);
 
-        function updater(current, next) {
+        function transform(current, next) {
           if (Array.isArray(next)) {
             return current.concat(next);
           }
@@ -446,7 +446,7 @@ describe("merge Suite", function() {
         expect(result.data).to.eql([1, 2, 3, 4, 5, 6]);
       });
 
-      it("then the result has the misc value as transformed by the updater", function() {
+      it("then the result has the misc value as transformed by the transform", function() {
         expect(result.misc.expanded).to.equal("modded");
       });
     });
