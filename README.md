@@ -50,7 +50,7 @@ Shallow copies all properties from the input objects (sources) into the target o
 
 #### merge(target, ...)
 
-Deep copy all properties from the input objects (sources) into the target object. Properties are copied from left to right overriding whatever values that already exist in the resulting object.
+Deep copy all properties from the input objects (sources) into the target object. It merges objects and arrays into new structures from left to right overriding simple properties that have already been set.
 
 - **@param** {object} *target* - Object to copy properties to.
 - **@param** {...} *source* - The source objects to be merged into the target object
