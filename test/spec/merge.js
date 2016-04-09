@@ -42,7 +42,7 @@ describe("merge Suite", function() {
       var result, target;
       beforeEach(function() {
         target = {};
-        result = merge(target, {"one": "dont"}, {"two": "twotest", "one": "onetest"});
+        result = merge(target, [{"one": "dont"}, {"two": "twotest", "one": "onetest"}]);
       });
 
       it("then result is target", function() {
@@ -85,7 +85,7 @@ describe("merge Suite", function() {
         };
 
         source2 = {"one": ["onetest"]};
-        target = merge({}, defaults, source1);
+        target = merge({}, [defaults, source1]);
         result = merge(target, source2);
       });
 
@@ -154,7 +154,7 @@ describe("merge Suite", function() {
       var result, target;
       beforeEach(function() {
         target = {};
-        result = merge(target, {"one": "dont"}, {"two": "twotest", "one": "onetest", "with": {"object": "two deep"}});
+        result = merge(target, [{"one": "dont"}, {"two": "twotest", "one": "onetest", "with": {"object": "two deep"}}]);
       });
 
       it("then result is target", function() {
@@ -202,7 +202,7 @@ describe("merge Suite", function() {
       var result, target;
       beforeEach(function() {
         target = {};
-        result = merge(target, {"one": "dont"}, {"two": "twotest", "one": "onetest", "with": {"object": "two deep", "noway": {"yes":"way"}}});
+        result = merge(target, [{"one": "dont"}, {"two": "twotest", "one": "onetest", "with": {"object": "two deep", "noway": {"yes":"way"}}}]);
       });
 
       it("then result is an object", function() {
@@ -264,7 +264,7 @@ describe("merge Suite", function() {
         obj5 = {"modules": {"no": {"item": "overriden3"}}};
         obj6 = {"modules": {"no": {"item": "overriden4"}}};
         obj7 = {"modules": {"no": {"item": "overriden5"}}};
-        target = merge({}, obj1, obj2, obj3, obj4, obj5, obj6, obj7);
+        target = merge({}, [obj1, obj2, obj3, obj4, obj5, obj6, obj7]);
       });
 
       it("then original obj1.no is an object", function() {
@@ -385,6 +385,69 @@ describe("merge Suite", function() {
 
       it("then result module.yes.item is date", function() {
         expect(target.modules.yes.item).to.equal(date);
+      });
+    });
+
+    describe("with arrays that override already exising entries", function() {
+      var result, source1, source2;
+
+      beforeEach(function() {
+        source1 = {
+          data: [1, 2, 3],
+          misc: "random"
+        };
+
+        source2 = {
+          data: [4, 5]
+        };
+
+        result = merge({}, [source1, source2]);
+      });
+
+      it("then the result has the aggregated entries from the corresponding input arrays", function() {
+        expect(result.data).to.eql([4, 5, 3]);
+      });
+
+      it("then the result has the corresponding value from the input", function() {
+        expect(result.misc).to.equal("random");
+      });
+    });
+
+    describe("with a custom updater that concats arrays", function() {
+      var result, source1, source2;
+
+      beforeEach(function() {
+        source1 = {
+          data: [1, 2, 3],
+          misc: "random"
+        };
+
+        source2 = {
+          data: [4, 5, 6]
+        };
+
+        result = merge({}, [source1, source2], updater);
+
+        function updater(current, next) {
+          if (Array.isArray(next)) {
+            return current.concat(next);
+          }
+          else if (typeof next === "string") {
+            return {
+              expanded: "modded"
+            };
+          }
+
+          return next;
+        }
+      });
+
+      it("then the result has the concatinated array from all sources", function() {
+        expect(result.data).to.eql([1, 2, 3, 4, 5, 6]);
+      });
+
+      it("then the result has the misc value as transformed by the updater", function() {
+        expect(result.misc.expanded).to.equal("modded");
       });
     });
   });
