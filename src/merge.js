@@ -6,7 +6,10 @@ function doCopy(target, source) {
       continue;
     }
 
-    if (types.isPlainObject(source[property])) {
+    if (types.isBuffer(source[property])) {
+      target[property] = source[property];
+    }
+    else if (types.isPlainObject(source[property])) {
       target[property] = doCopy(target[property] || {}, source[property]);
     }
     else if (types.isArray(source[property])) {
