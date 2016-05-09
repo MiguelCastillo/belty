@@ -34,10 +34,10 @@ function clone(target, source) {
  * already set properties.
  *
  * @param {object} target - Object to copy properties to
+ * @param {...object} sources - The list of source objects to be merged into the target object
  * @param {function} transform - Transform function called with current and next value, as well
  *  as the key in order to generate the final value for the particular object entry. The transform
  *  is only called with top level objects currently being processed.
- * @param {...object} sources - The list of source objects to be merged into the target object
  *
  * @returns {object} Object with all source objects merged in.
  *
@@ -62,7 +62,7 @@ function clone(target, source) {
  *    data: [4, 5, 6]
  *  };
  *
- *  result = merge({}, transform, source1, source2);
+ *  result = merge({}, source1, source2, transform);
  *
  * function transform(current, next) {
  *   if (Array.isArray(next.data)) {
@@ -74,16 +74,14 @@ function clone(target, source) {
  *   return next;
  * }
  */
-function merge(target, transform) {
+function merge(target) {
   target = target || {};
-  var sources;
+  var sources = Array.prototype.slice.call(arguments, 1);
+  var transform = baseTransform;
 
-  if (types.isFunction(transform)) {
-    sources = Array.prototype.slice.call(arguments, 2);
-  }
-  else {
-    sources = Array.prototype.slice.call(arguments, 1);
-    transform = baseTransform;
+  if (types.isFunction(sources[sources.length - 1])) {
+    transform = sources[sources.length - 1];
+    sources.pop();
   }
 
   // Allow `n` params to be passed in to extend this object

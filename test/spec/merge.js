@@ -426,7 +426,7 @@ describe("merge Suite", function() {
           data: [4, 5, 6]
         };
 
-        result = merge({}, transform, source1, source2);
+        result = merge({}, source1, source2, transform);
 
         function transform(current, next) {
           if (Array.isArray(next.data)) {

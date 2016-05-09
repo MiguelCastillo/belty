@@ -122,13 +122,13 @@ var result = extend({}, input1, input2);
 ```
 
 
-#### merge(target, transform, ...sources)
+#### merge(target, ...sources, transform)
 
 Deep copy all properties from the input objects (sources) into the target object. It merges objects and arrays into new structures from left to right overriding all other non array/object properties.
 
 - **@param** {object} *target* - Object to copy properties to
-- **@param** {function} *transform* - Transform function called with current and next value, as well as the key in order to generate the final value for the particular object entry. The transform is only called with top level objects currently being processed.
 - **@param** {...object} *sources* - The list of source objects to be merged into the target object
+- **@param** {function} *transform* - Transform function called with current and next value, as well as the key in order to generate the final value for the particular object entry. The transform is only called with top level objects currently being processed.
 - **@returns** {object} Object with all source objects merged in.
 
 ``` javascript
@@ -159,7 +159,7 @@ var source2 = {
   data: [4, 5, 6]
 };
 
-var result = merge({}, transform, source1, source2);
+var result = merge({}, source1, source2, transform);
 
 function transform(current, next) {
   if (Array.isArray(next.data)) {
