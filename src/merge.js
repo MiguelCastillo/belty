@@ -74,16 +74,14 @@ function clone(target, source) {
  *   return next;
  * }
  */
-function merge(target, transform) {
+function merge(target) {
   target = target || {};
-  var sources;
+  var sources = Array.prototype.slice.call(arguments, 1);
+  var transform = baseTransform;
 
-  if (types.isFunction(transform)) {
-    sources = Array.prototype.slice.call(arguments, 2);
-  }
-  else {
-    sources = Array.prototype.slice.call(arguments, 1);
-    transform = baseTransform;
+  if (types.isFunction(sources[sources.length - 1])) {
+    transform = sources[sources.length - 1];
+    sources.pop();
   }
 
   // Allow `n` params to be passed in to extend this object
