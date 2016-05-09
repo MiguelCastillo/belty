@@ -34,7 +34,7 @@ assert(noop(input) === undefined);
 Method that extracts key value pairs from the input object.
 
 - **@param** {object} *input* - Object to generate data from.
-- **@param** {string|string[]|object} *keys* - Key/value pairs to extract from `input`.
+- **@param** {string|string[]|object} *keys* - Key/value pairs to extract from `input`. Keys that do not exist in the input are ignored.
 - **@returns** {object} Object with key value pairs of only the matching *keys*.
 
 
@@ -45,7 +45,7 @@ var input = {
   id: "some-random-id"
 };
 
-var result = pick(input, ["first", "id"]);
+var result = pick(input, ["first", "id", "something that does not exist"]);
 
 // result is:
 // {
@@ -122,13 +122,13 @@ var result = extend({}, input1, input2);
 ```
 
 
-#### merge(target, [sources], transform)
+#### merge(target, transform, ...sources)
 
 Deep copy all properties from the input objects (sources) into the target object. It merges objects and arrays into new structures from left to right overriding all other non array/object properties.
 
 - **@param** {object} *target* - Object to copy properties to
-- **@param** {object | object[]} *sources* - The source objects to merge into the target object
-- **@param** {function} *transform* - Transform function called with current and next value, as well as the key in order to generate the final value for the particular object entry. The return value from this transform function is the final stored for the particular entry in the object. So be sure to return whatever value you want as the value.
+- **@param** {function} *transform* - Transform function called with current and next value, as well as the key in order to generate the final value for the particular object entry. The transform is only called with top level objects currently being processed.
+- **@param** {...object} *sources* - The list of source objects to be merged into the target object
 - **@returns** {object} Object with all source objects merged in.
 
 ``` javascript
@@ -141,7 +141,7 @@ var source2 = {
   data: [4, 5]
 };
 
-var result = merge({}, [source1, source2]);
+var result = merge({}, source1, source2);
 
 // {
 //   data: [4, 5, 3],
@@ -159,15 +159,12 @@ var source2 = {
   data: [4, 5, 6]
 };
 
-var result = merge({}, [source1, source2], transform);
+var result = merge({}, transform, source1, source2);
 
-function transform(current, next, key) {
-  if (Array.isArray(next)) {
-    return current.concat(next);
-  }
-  else if (typeof next === "string") {
+function transform(current, next) {
+  if (Array.isArray(next.data)) {
     return {
-      expanded: "modded"
+      data: current.data ? current.data.concat(next.data) : next.data
     };
   }
 
@@ -179,9 +176,7 @@ function transform(current, next, key) {
 // method.
 // {
 //   data: [1, 2, 3, 4, 5, 6],
-//   misc: {
-//     expanded: "modded"
-//   }
+//   misc: "random"
 // }
 ```
 

@@ -2,46 +2,42 @@ var types = require("dis-isa");
 
 function baseTransform(t, s) { return s; };
 
-function mergeWith(transform) {
-  function doCopy(target, source) {
-    for (var key in source) {
-      if (!source.hasOwnProperty(key)) {
-        continue;
-      }
-
-      if (types.isBuffer(source[key])) {
-        target[key] = transform(target[key], source[key], key);
-      }
-      else if (types.isPlainObject(source[key])) {
-        target[key] = target[key] || {};
-        target[key] = doCopy(target[key], transform(target[key], source[key], key));
-      }
-      else if (types.isArray(source[key])) {
-        target[key] = target[key] || [];
-        target[key] = doCopy(target[key], transform(target[key], source[key], key));
-      }
-      else {
-        target[key] = transform(target[key], source[key], key);
-      }
+function clone(target, source) {
+  for (var key in source) {
+    if (!source.hasOwnProperty(key)) {
+      continue;
     }
 
-    return target;
+    if (types.isBuffer(source[key])) {
+      target[key] = source[key];
+    }
+    else if (types.isPlainObject(source[key])) {
+      target[key] = target[key] || {};
+      target[key] = clone(target[key], source[key]);
+    }
+    else if (types.isArray(source[key])) {
+      target[key] = target[key] || [];
+      target[key] = clone(target[key], source[key]);
+    }
+    else {
+      target[key] = source[key];
+    }
   }
 
-  return doCopy;
+  return target;
 }
+
 
 /**
  * Deep copy all properties from the input objects (sources) into the target object.
  * It merges objects and arrays into new structures from left to right overriding
- * all other non array/object properties.
+ * already set properties.
  *
  * @param {object} target - Object to copy properties to
- * @param {object | object[]} sources - The source objects to merge into the target object
  * @param {function} transform - Transform function called with current and next value, as well
- *  as the key in order to generate the final value for the particular object entry. The
- *  return value from this transform function is the final stored for the particular entry in
- *  the object. So be sure to return whatever value you want as the value
+ *  as the key in order to generate the final value for the particular object entry. The transform
+ *  is only called with top level objects currently being processed.
+ * @param {...object} sources - The list of source objects to be merged into the target object
  *
  * @returns {object} Object with all source objects merged in.
  *
@@ -66,31 +62,33 @@ function mergeWith(transform) {
  *    data: [4, 5, 6]
  *  };
  *
- *  result = merge({}, [source1, source2], transform);
+ *  result = merge({}, transform, source1, source2);
  *
- *  function transform(current, next) {
- *    if (Array.isArray(next)) {
- *      return current.concat(next);
- *    }
- *    else if (typeof next === "string") {
- *      return {
- *        expanded: "modded"
- *      };
- *    }
+ * function transform(current, next) {
+ *   if (Array.isArray(next.data)) {
+ *     return {
+ *       data: current.data ? current.data.concat(next.data) : next.data
+ *     };
+ *   }
  *
- *    return next;
- *  }
- *
+ *   return next;
+ * }
  */
-function merge(target, sources, transform) {
+function merge(target, transform) {
   target = target || {};
-  sources = types.isArray(sources) ? sources : [sources];
+  var sources;
 
-  var merger = mergeWith(transform || baseTransform);
+  if (types.isFunction(transform)) {
+    sources = Array.prototype.slice.call(arguments, 2);
+  }
+  else {
+    sources = Array.prototype.slice.call(arguments, 1);
+    transform = baseTransform;
+  }
 
   // Allow `n` params to be passed in to extend this object
   for (var i = 0, length  = sources.length; i < length; i++) {
-    target = merger(target, sources[i]);
+    clone(target, transform(target, sources[i]));
   }
 
   return target;
