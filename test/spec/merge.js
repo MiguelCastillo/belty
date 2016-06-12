@@ -38,6 +38,27 @@ describe("merge Suite", function() {
       });
     });
 
+    describe("and object with a property that is an instance", function() {
+      var result, target, klass;
+
+      beforeEach(function() {
+        target = {};
+        klass = function() {};
+
+        result = merge(target, {
+          prop: new klass()
+        });
+      });
+
+      it("then result is target", function() {
+        expect(result).to.equal(target);
+      });
+
+      it("then the property in result is an instance of the klass", function() {
+        expect(result.prop).to.be.instanceof(klass);
+      });
+    });
+
     describe("two objects with the same property", function() {
       var result, target;
       beforeEach(function() {
