@@ -3,24 +3,28 @@ var types = require("dis-isa");
 function baseTransform(t, s) { return s; };
 
 function clone(target, source) {
+  var data;
+
   for (var key in source) {
     if (!source.hasOwnProperty(key)) {
       continue;
     }
 
-    if (types.isBuffer(source[key])) {
-      target[key] = source[key];
+    data = source[key];
+
+    if (types.isBuffer(data)) {
+      target[key] = data;
     }
-    else if (types.isPlainObject(source[key])) {
+    else if (data && data.constructor === Object) {
       target[key] = target[key] || {};
-      target[key] = clone(target[key], source[key]);
+      target[key] = clone(target[key], data);
     }
-    else if (types.isArray(source[key])) {
+    else if (types.isArray(data)) {
       target[key] = target[key] || [];
-      target[key] = clone(target[key], source[key]);
+      target[key] = clone(target[key], data);
     }
     else {
-      target[key] = source[key];
+      target[key] = data;
     }
   }
 
