@@ -1,6 +1,6 @@
 {
   "name": "belty",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "dependencies": {
     "dis-isa": "^1.2.2",
     "split-keypath": "^1.0.1"
