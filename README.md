@@ -183,7 +183,7 @@ function transform(current, next) {
 
 #### isMatch(input, criteria)
 
-Recursively matches properties in an input object to a criteria object.  When matching items in an array, the index position is taken into account.
+Deeply compares (matches) properties in an object to a criteria. When matching items in an array, the index position is taken into account.
 
 - **@param** {object | array | string | number} input - Object to check the criteria against
 - **@param** {object | array | string | number} criteria - Object with all the data to match against
