@@ -181,6 +181,53 @@ function transform(current, next) {
 ```
 
 
+#### isMatch(input, criteria)
+
+Recursively matches properties in an input object to a criteria object.  When matching items in an array, the index position is taken into account.
+
+- **@param** {object | array | string | number} input - Object to check the criteria against
+- **@param** {object | array | string | number} criteria - Object with all the data to match against
+- **@returns** { boolean }
+
+
+``` javascript
+var input = {
+  prop1: 3.14,
+  prop2: [4, 8],
+  prop3: {
+    "prop3--1": [23]
+  }
+};
+
+// Result is true
+isMatch(input, {
+  prop1: 3.14
+});
+
+// Result is true
+isMatch(input, {
+  prop2: [4]
+});
+
+// Result is false
+isMatch(input, {
+  prop2: [8]
+});
+
+// Result is false
+isMatch(input, {
+  prop2: [1]
+});
+
+// Result is true
+isMatch(input, {
+  prop3: {
+    "prop3--1": [23]
+  }
+});
+```
+
+
 #### objectValue(input, keypath)
 
 Extract values from an input object for a given keypath. This method is useful for extracting value out from dynamic arbitrary paths.
