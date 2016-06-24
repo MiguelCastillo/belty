@@ -3,6 +3,7 @@ var omit = require("./omit");
 var extend = require("./extend");
 var merge = require("./merge");
 var identity = require("./identity");
+var isMatch = require("./isMatch");
 var noop = require("./noop");
 var objectValue = require("./objectValue");
 var objectValues = require("./objectValues");
@@ -17,6 +18,7 @@ module.exports = {
   extend: extend,
   merge: merge,
   identity: identity,
+  isMatch: isMatch,
   noop: noop,
   value: value,
   objectValue: objectValue,
