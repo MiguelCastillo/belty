@@ -7,3 +7,4 @@ require("test/spec/objectValue");
 require("test/spec/pick");
 require("test/spec/omit");
 require("test/spec/isMatch");
+require("test/spec/findAll");
