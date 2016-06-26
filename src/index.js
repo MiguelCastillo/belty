@@ -2,6 +2,7 @@ var pick = require("./pick");
 var omit = require("./omit");
 var extend = require("./extend");
 var merge = require("./merge");
+var findAll = require("./findAll");
 var identity = require("./identity");
 var isMatch = require("./isMatch");
 var noop = require("./noop");
@@ -17,6 +18,7 @@ module.exports = {
   omit: omit,
   extend: extend,
   merge: merge,
+  findAll: findAll,
   identity: identity,
   isMatch: isMatch,
   noop: noop,

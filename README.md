@@ -228,12 +228,14 @@ isMatch(input, {
 ```
 
 
-#### findAll(input, matcher)
+#### findAll(input, predicate)
 
-Creates and returns an array that contains all the items that match the provided criteria.
+Returns an array with all the items for which the predicate function returns true for when the predicate is a function. Or in the case when the predicate is not a function, whatever isMatch returns true for using predicate as the matching criteria.
+
+Predicate functions are called with item, index, and original collection.
 
 - **@param** { object | array } input - Collection to extract matching items from.
-- **@param** { object | array | string | number | function } matcher - Object to match the shape of the items to pull from input. Alternatively, you can pass a function to customize which items to pull from input.
+- **@param** { object | array | string | number | function } predicate - If a function is provided, then that's called and any item for which that returns true to for is included in the result set. Otherwise, isMatch is used to deeply match object structures. Object that match the object structure are included in the result set.
 - **@returns** { array } Collection of items that matched the criteria
 
 
