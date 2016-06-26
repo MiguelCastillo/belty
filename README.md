@@ -228,6 +228,60 @@ isMatch(input, {
 ```
 
 
+#### findAll(input, matcher)
+
+Creates and returns an array that contains all the items that match the provided criteria.
+
+- **@param** { object | array } input - Collection to extract matching items from.
+- **@param** { object | array | string | number | function } matcher - Object to match the shape of the items to pull from input. Alternatively, you can pass a function to customize which items to pull from input.
+- **@returns** { array } Collection of items that matched the criteria
+
+
+##### Example with an input array
+``` javascript
+var input = [{
+  city: "DET",
+  number: 313
+}, {
+  city: "RO",
+  number: 2311
+}, {
+  city: "DET",
+  number: 734
+}];
+
+// Result is
+// [{ city: "DET", number: 313 }, { city: "DET", number: 734 }]
+findAll(input, {
+  city: "DET"
+});
+```
+
+##### Example with an input object
+``` javascript
+var input = {
+  item1: {
+    city: "DET",
+    number: 313
+  },
+  item2: {
+    city: "RO",
+    number: 2311
+  },
+  item3: {
+    city: "DET",
+    number: 734
+  }
+};
+
+// Result is
+// [{ city: "DET", number: 313 }, { city: "DET", number: 734 }]
+findAll(input, {
+  city: "DET"
+});
+```
+
+
 #### objectValue(input, keypath)
 
 Extract values from an input object for a given keypath. This method is useful for extracting value out from dynamic arbitrary paths.
