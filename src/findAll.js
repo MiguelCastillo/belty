@@ -6,6 +6,8 @@ var isMatch = require("./isMatch");
  * true for when the predicate is a function. Or in the case when the predicate is not a function,
  * whatever isMatch returns true for using predicate as the matching criteria.
  *
+ * Predicate functions are called with item, index, and original collection.
+ *
  * @param { object | array } input - Collection of items to search for the first match from.
  * @param { object | array | string | number | function } predicate - If a function is provided,
  *  then that's called and any item for which that returns true to for is included in the
