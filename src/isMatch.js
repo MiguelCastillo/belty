@@ -40,4 +40,16 @@ function isMatch(input, criteria) {
   return false;
 }
 
+isMatch.withCriteria = function(criteria) {
+  return function(item) {
+    return isMatch(item, criteria);
+  }
+};
+
+isMatch.withItem = function(item) {
+  return function(criteria) {
+    return isMatch(item, criteria);
+  }
+};
+
 module.exports = isMatch;
