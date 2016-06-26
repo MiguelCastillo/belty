@@ -230,7 +230,7 @@ isMatch(input, {
 
 #### findAll(input, predicate)
 
-Returns an array that contains all the items for which calling the predicate function returns true for when the predicate is a function. Or in the case when the predicate is not a function, whatever isMatch returns true for using predicate as the matching criteria.
+Returns an array with all the items for which the predicate function returns true for when the predicate is a function. Or in the case when the predicate is not a function, whatever isMatch returns true for using predicate as the matching criteria.
 
 Predicate functions are called with item, index, and original collection.
 
