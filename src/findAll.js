@@ -8,11 +8,11 @@ var isMatch = require("./isMatch");
  *
  * Predicate functions are called with item, index, and original collection.
  *
- * @param { object | array } input - Collection of items to search for the first match from.
+ * @param { object | array } input - Collection of items to search in.
  * @param { object | array | string | number | function } predicate - If a function is provided,
- *  then that's called and any item for which that returns true to for is included in the
- *  result set. Otherwise, isMatch is used to deeply match object structures. Object that match
- *  the object structure are included in the result set.
+ *  then that's called and any item for which that returns true for is included in the result set.
+ *  Otherwise, isMatch is used to deeply match object structures. Object that match the object
+ *  structure are included in the result set.
  *
  * @returns { array } Collection of items that matched the criteria
  */
