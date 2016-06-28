@@ -1,10 +1,10 @@
-## belty
+# belty
 General purpose utility belt
 
-### API
+## API
 
 
-#### identity(arg?)
+### identity(arg?)
 
 Helper method that returns the first argument passed in.
 
@@ -16,8 +16,9 @@ var input = 3.14;
 assert(identity(input) === input);
 ```
 
+<hr style="border-bottom: 1px solid #dedede;"/>
 
-#### noop
+### noop
 
 noop method! It takes no arguments and does not return anything. Useful when you need to setup an initial placeholder function.
 
@@ -27,7 +28,9 @@ assert(noop(input) === undefined);
 ```
 
 
-#### pick(input, keys)
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### pick(input, keys)
 
 > Alias `pluck`
 
@@ -55,7 +58,9 @@ var result = pick(input, ["first", "id", "something that does not exist"]);
 ```
 
 
-#### omit(input, keys)
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### omit(input, keys)
 
 Method that take an object as the input and generates another **omitting** (without) the specified keys.
 
@@ -83,7 +88,9 @@ var result = omit(input, ["first"]);
 ```
 
 
-#### extend(target, ...)
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### extend(target, ...)
 
 Shallow copies all properties from the input objects (sources) into the target object. Source objects are processed left to right overriding whatever values already exist in the result.
 
@@ -122,7 +129,9 @@ var result = extend({}, input1, input2);
 ```
 
 
-#### merge(target, ...sources, transform)
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### merge(target, ...sources, transform)
 
 Deep copy all properties from the input objects (sources) into the target object. It merges objects and arrays into new structures from left to right overriding all other non array/object properties.
 
@@ -181,7 +190,9 @@ function transform(current, next) {
 ```
 
 
-#### isMatch(input, criteria)
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### isMatch(input, criteria)
 
 Deeply compares (matches) properties in an object to a criteria. When matching items in an array, the index position is taken into account.
 
@@ -228,7 +239,9 @@ isMatch(input, {
 ```
 
 
-#### findAll(input, predicate)
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### findAll(input, predicate)
 
 Returns an array with all the items for which the predicate function returns true for when the predicate is a function. Or in the case when the predicate is not a function, whatever isMatch returns true for using predicate as the matching criteria.
 
@@ -284,7 +297,9 @@ findAll(input, {
 ```
 
 
-#### objectValue(input, keypath)
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### objectValue(input, keypath)
 
 Extract values from an input object for a given keypath. This method is useful for extracting value out from dynamic arbitrary paths.
 
@@ -315,7 +330,9 @@ var result = objectValue(input, ["car", "interior", "seats"]);
 ```
 
 
-#### objectValues(input)
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### objectValues(input)
 
 Gets the values from a object map and returns them in an array. If an array is passed in, then the array is returned as is.
 
@@ -336,7 +353,9 @@ var result = objectValues(input);
 ```
 
 
-#### arrayToObject(input, val)
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### arrayToObject(input, val)
 
 Converts arrays to a literal objects with the array values as keys. You can optionally pass in a callback function that is called in order to generate the values that go in the final result. `val` can also just be anything to be used as the value for each entry in the final result, otherwise `true` is used.
 
@@ -392,7 +411,10 @@ function transform(value, key, array) {
 ```
 
 
-#### value(input, args, context, defaultValue)
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### value(input, args, context, defaultValue)
+
 > Alias `result`
 
 Method that uses the input to derive a return value.
@@ -404,5 +426,6 @@ If the input is a function, then the function is called with the args passed in.
 - **@param** {*} defaultValue - value to be returned in case the input is not defined.
 - **@returns** {*} The derived value
 
+<hr style="border-bottom: 1px solid #dedede;"/>
 
-### License MIT
+# License MIT
