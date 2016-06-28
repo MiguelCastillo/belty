@@ -238,16 +238,71 @@ isMatch(input, {
 });
 ```
 
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### find(input, predicate)
+
+Find the first item for which the predicate function returns true for. Or in the case when the predicate is not a function, whatever isMatch returns true for using predicate as the matching criteria.
+
+Predicate functions are called with item, index, and original collection.
+
+- **@param** { object | array } input - Collection of items to search in.
+- **@param** { object | array | string | number | function } predicate - If a function is provided, then that's called and any item for which that returns true to for is included in the result set. Otherwise, isMatch is used to deeply match object structures. Object that match the object structure are included in the result set.
+- **@returns** { Object } First object that matches the provided criteria
+
+##### Example with an input array
+``` javascript
+var input = [{
+  city: "DET",
+  number: 313
+}, {
+  city: "RO",
+  number: 2311
+}, {
+  city: "DET",
+  number: 734
+}];
+
+// Result is
+// { city: "DET", number: 313 }
+findAll(input, {
+  city: "DET"
+});
+```
+
+##### Example with an input object
+``` javascript
+var input = {
+  item1: {
+    city: "DET",
+    number: 313
+  },
+  item2: {
+    city: "RO",
+    number: 2311
+  },
+  item3: {
+    city: "DET",
+    number: 734
+  }
+};
+
+// Result is
+// { city: "DET", number: 313 }
+findAll(input, {
+  city: "DET"
+});
+```
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
 ### findAll(input, predicate)
 
-Returns an array with all the items for which the predicate function returns true for when the predicate is a function. Or in the case when the predicate is not a function, whatever isMatch returns true for using predicate as the matching criteria.
+Returns an array with all the items for which the predicate function returns true for. Or in the case when the predicate is not a function, whatever isMatch returns true for using predicate as the matching criteria.
 
 Predicate functions are called with item, index, and original collection.
 
-- **@param** { object | array } input - Collection to extract matching items from.
+- **@param** { object | array } input - Collection of items to search in.
 - **@param** { object | array | string | number | function } predicate - If a function is provided, then that's called and any item for which that returns true to for is included in the result set. Otherwise, isMatch is used to deeply match object structures. Object that match the object structure are included in the result set.
 - **@returns** { array } Collection of items that matched the criteria
 
