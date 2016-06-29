@@ -134,7 +134,7 @@ describe("isMatch Suite", function() {
           prop3: {
             "prop3--1": [23]
           }
-        }
+        };
       });
 
       describe("and the criteria has a property with the same value as the input", function() {
