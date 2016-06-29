@@ -1,9 +1,13 @@
 var types = require("dis-isa");
 
 /**
- * Converts array to a literal object with the array values used as keys. So this is
- * to be used for converting an array of string/number entries to a literal object with
- * those values as the keys for the new object.
+ * Converts arrays to a literal objects with the array values as keys. You can optionally
+ * pass in a callback function that is called in order to generate the values that go
+ * in the final result. `val` can also just be anything to be used as the value for each
+ * entry in the final result, otherwise `true` is used.
+ *
+ * This method is useful in situation where you need to create a lookup table such as
+ * an object map (enums).
  *
  * @param { array } input - Items to convert to a map
  * @param { *? } val - Can be a function, in which case it is called with the currect

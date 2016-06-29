@@ -2,8 +2,8 @@ var types = require("dis-isa");
 var arrayToObject = require("./arrayToObject");
 
 /**
- * Method that removes key value pairs from the input object and returns the remaining data
- * in a new shallow copy of the input object.
+ * Pulls out all the items in the input that are **not** in `keys` and returns a new object
+ * with just that.
  *
  * @param { object } input - Object to extract data from
  * @param { string | string[] | object } keys - Keys for the values to extract from the input
