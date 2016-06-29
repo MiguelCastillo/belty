@@ -1,8 +1,11 @@
 var types = require("dis-isa");
 
 /**
- * Recursively matches all the properties in the criteria against the input. Only if all data in
- * criteria is found in the input is the result true. Otherwise the result is false.
+ * Deep comparisson of object structures recursively matching all properties in criteria with the
+ * input. If everything in the criteria matches the input, then isMatch returns true. Otherwise
+ * it returns false.
+ *
+ * When matching items in an array, the index position is taken into account.
  *
  * @param { object | array | string | number } input - Data to be matched against
  * @param { object | array | string | number } criteria - Object shape to match against the input

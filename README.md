@@ -62,7 +62,7 @@ var result = pick(input, ["first", "id", "something that does not exist"]);
 
 ### omit(input, keys)
 
-Method that take an object as the input and generates another **omitting** (without) the specified keys.
+Pulls out all the items in the input that are **not** in `keys` and returns a new object with just that.
 
 Opposite of *pick*
 
@@ -194,7 +194,9 @@ function transform(current, next) {
 
 ### isMatch(input, criteria)
 
-Deeply compares (matches) properties in an object to a criteria. When matching items in an array, the index position is taken into account.
+Deep comparisson of object structures recursively matching all properties in criteria with the input. If everything in the criteria matches the input, then isMatch returns true. Otherwise it returns false.
+
+When matching items in an array, the index position is taken into account.
 
 - **@param** {object | array | string | number} input - Object to check the criteria against
 - **@param** {object | array | string | number} criteria - Object with all the data to match against
@@ -414,7 +416,7 @@ var result = objectValues(input);
 
 Converts arrays to a literal objects with the array values as keys. You can optionally pass in a callback function that is called in order to generate the values that go in the final result. `val` can also just be anything to be used as the value for each entry in the final result, otherwise `true` is used.
 
-This method is useful in situation where you need to use a lookup table.
+This method is useful in situation where you need to create a lookup table such as an object map (enums).
 
 - **@param** { array } input - Items to convert to a map
 - **@param** { *? } val - Can be a function, in which case it is called with the currect item in the array being processed in order to derive the value for the map entry. If a value of any other type is provided, that is used for populating each entry in the resulting map. Or if a value is not provided, all entries will be initialized to `true`
@@ -464,22 +466,6 @@ function transform(value, key, array) {
 //   "location": "location-3"
 // }
 ```
-
-
-<hr style="border-bottom: 1px solid #dedede;"/>
-
-### value(input, args, context, defaultValue)
-
-> Alias `result`
-
-Method that uses the input to derive a return value.
-
-If the input is a function, then the function is called with the args passed in. If the function returns a value, that value is then returned as the final result. Otherwise, if value is *not* undefined, then that's returned as the final value. Otherwise, the default value is returned.
-
-- **@param** {*} input - input value to derived returned value from.
-- **@param** {array} args - Arguments to be passed into the input when it is a function.
-- **@param** {*} defaultValue - value to be returned in case the input is not defined.
-- **@returns** {*} The derived value
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
