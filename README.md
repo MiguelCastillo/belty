@@ -194,7 +194,7 @@ function transform(current, next) {
 
 ### isMatch(input, criteria)
 
-Deep comparisson of object structures recursively matching all properties in criteria with the input. If everything in the criteria matches in the input, then isMatch returns true. Otherwise it returns false.
+Deep comparisson of object structures recursively matching all properties in criteria with the input. If everything in the criteria matches the input, then isMatch returns true. Otherwise it returns false.
 
 When matching items in an array, the index position is taken into account.
 
