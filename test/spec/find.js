@@ -148,7 +148,7 @@ describe("find Suite", function() {
         });
 
         it("then the result has the found item", function() {
-          expect(result).to.not.be.undefined
+          expect(result).to.not.be.undefined;
         });
 
         it("then the first item in the result is the first item in the input", function() {
