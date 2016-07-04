@@ -9,6 +9,7 @@ var noop = require("./noop");
 var arrayToObject = require("./arrayToObject");
 var value = require("./value");
 var values = require("./values");
+var toArray = require("./toArray");
 
 module.exports = {
   result: value,
@@ -25,5 +26,6 @@ module.exports = {
   values: values,
   objectValue: value,
   objectValues: values,
-  arrayToObject: arrayToObject
+  arrayToObject: arrayToObject,
+  toArray: toArray
 };
