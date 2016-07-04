@@ -9,3 +9,4 @@ require("test/spec/omit");
 require("test/spec/isMatch");
 require("test/spec/find");
 require("test/spec/findAll");
+require("test/spec/toArray");
