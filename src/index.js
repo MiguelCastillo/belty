@@ -6,10 +6,9 @@ var findAll = require("./findAll");
 var identity = require("./identity");
 var isMatch = require("./isMatch");
 var noop = require("./noop");
-var objectValue = require("./objectValue");
-var objectValues = require("./objectValues");
 var arrayToObject = require("./arrayToObject");
 var value = require("./value");
+var values = require("./values");
 
 module.exports = {
   result: value,
@@ -23,7 +22,8 @@ module.exports = {
   isMatch: isMatch,
   noop: noop,
   value: value,
-  objectValue: objectValue,
-  objectValues: objectValues,
+  values: values,
+  objectValue: value,
+  objectValues: values,
   arrayToObject: arrayToObject
 };

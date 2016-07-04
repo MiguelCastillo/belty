@@ -356,12 +356,15 @@ findAll(input, {
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### objectValue(input, keypath)
+### value(input, keypath, transform)
 
-Extract values from an input object for a given keypath. This method is useful for extracting value out from dynamic arbitrary paths.
+> Alias objectValue
+
+Extract the value from an input object for the given keypath.
 
 - **@param** {object} input - Object to read `property` from.
 - **@param** {string|number|array} keypath - keypath for the value in the object.
+- **@param** {function?} transform - Function that is called to transform the result. The function is called with the result, keypath and the input. The result from calling the transform is returned.
 - **@returns** {*} The value for the corresponding keypath.
 
 
@@ -377,7 +380,7 @@ var input = {
   }
 };
 
-var result = objectValue(input, ["car", "interior", "seats"]);
+var result = value(input, ["car", "interior", "seats"]);
 
 // result is the seats
 // {
@@ -389,7 +392,9 @@ var result = objectValue(input, ["car", "interior", "seats"]);
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### objectValues(input)
+### values(input)
+
+> Alias objectValues
 
 Gets the values from a object map and returns them in an array. If an array is passed in, then the array is returned as is.
 
@@ -403,7 +408,7 @@ var input = {
   "hello": "world"
 };
 
-var result = objectValues(input);
+var result = values(input);
 
 // result is an array with just the object values
 // ["bar", "world"]
