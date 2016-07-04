@@ -1,12 +1,12 @@
-var objectValue = require("src/objectValue");
+var value = require("src/value");
 
-describe("objectValue Suite", function() {
-  describe("when calling `objectValue`", function() {
+describe("value Test Suite", function() {
+  describe("when calling `value`", function() {
     describe("with an object as the input and no property to be read", function() {
       var output, input;
       beforeEach(function() {
         input = {};
-        output = objectValue(input);
+        output = value(input);
       });
 
       it("then the output is `undefined`", function() {
@@ -18,7 +18,7 @@ describe("objectValue Suite", function() {
       var input, output;
       beforeEach(function() {
         input = {body: 1};
-        output = objectValue(input, "body");
+        output = value(input, "body");
       });
 
       it("then then result is `1`", function() {
@@ -30,7 +30,7 @@ describe("objectValue Suite", function() {
       var input, output;
       beforeEach(function() {
         input = {body: sinon.stub()};
-        output = objectValue(input, "body");
+        output = value(input, "body");
       });
 
       it("then the function is called", function() {
@@ -64,7 +64,7 @@ describe("objectValue Suite", function() {
 
       describe("and reading a nested value with a string keypath", function() {
         beforeEach(function() {
-          output = objectValue(input, "a.b[2].good", transform);
+          output = value(input, "a.b[2].good", transform);
         });
 
         it("then the correct value is read from the nested keypath", function() {
@@ -79,7 +79,7 @@ describe("objectValue Suite", function() {
 
       describe("and reading a nested value with an array keypath", function() {
         beforeEach(function() {
-          output = objectValue(input, ["a", "b", "2", "good"], transform);
+          output = value(input, ["a", "b", "2", "good"], transform);
         });
 
         it("then the correct value is read from the nested keypath", function() {

@@ -1,25 +1,36 @@
+var identity = require("./identity");
+var splitKeypath = require("split-keypath");
 var types = require("dis-isa");
 
 /**
- * Method that uses the input to derive a return value.
+ * Extract the value from an input object for the given keypath.
  *
- * If the input is a function, then the function is called. If the function returns
- * a value, that value is then returned as the final result. Otherwise, if value is
- * *not* undefined, then that's returned as the final value. Otherwise, the default
- * value is returned.
+ * @param {object} input - Object to read `property` from.
+ * @param {string|number|array} keypath - keypath for the value in the object.
+ * @param {function?} transform -  Function that is called to transform the result.
+ *  The function is called with the result, keypath and the input. The result from
+ *  calling the transform is returned.
  *
- * @param {*} input - input value to derived returned value from.
- * @param {array} args - Arguments to be passed into the input when it is a function.
- * @param {*} defaultValue - value to be returned in case the input is not defined.
- *
- * @returns {*} The derived value
+ * @returns {*} The value for the corresponding keypath.
  */
-function value(input, args, context, defaultValue) {
-  if (types.isFunction(input)) {
-    input = input.apply(context, args || []);
+function value(input, keypath, transform) {
+  if (!keypath) {
+    return;
   }
 
-  return types.isUndefined(input) ? defaultValue : input;
+  if (types.isString(keypath)) {
+    keypath = splitKeypath(keypath);
+  }
+  else if (!types.isArray(keypath)) {
+    keypath = [keypath];
+  }
+
+  // Find value...
+  var value = keypath.reduce(function(nested, key) {
+    return nested[key];
+  }, input);
+
+  return (transform || identity)(value, keypath, input);
 }
 
 module.exports = value;
