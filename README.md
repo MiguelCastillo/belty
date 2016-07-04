@@ -414,6 +414,82 @@ var result = values(input);
 // ["bar", "world"]
 ```
 
+<hr style="border-bottom: 1px solid #dedede;"/>
+
+### toArray(...)
+
+Converts input items to an array.
+
+> When the input is an array, the items in it are added to the final resulting array.
+
+- **@param** { * } input - Data to be converted to array
+- **@returns** { array }
+
+When the input is an object
+
+``` javascript
+var input = {
+  a: "First value",
+  b: "Second value"
+};
+
+var result = toArray(input);
+
+// result is an array with the object as its values
+[{
+  a: "First value",
+  b: "Second value"
+}]
+```
+
+When the input is an array
+
+``` javascript
+var input = [{
+  a: "First value",
+  b: "Second value"
+}];
+
+var result = toArray(input);
+
+// result is an array with the object as its values
+[{
+  a: "First value",
+  b: "Second value"
+}]
+```
+
+When the input is one object and an array
+
+``` javascript
+var input1 = {
+  a: "First value",
+  b: "Second value"
+};
+
+var input2 = [{
+  c: "Third value",
+  d: "Fourth value"
+}, {
+  e: "Fifth value",
+  f: "Sixth value"
+}];
+
+var result = toArray(input1, input2);
+
+// result is an array with the object as its values
+[{
+  a: "First value",
+  b: "Second value"
+}, {
+  c: "Third value",
+  d: "Fourth value"
+}, {
+  e: "Fifth value",
+  f: "Sixth value"
+}]
+```
+
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
