@@ -1,10 +1,31 @@
 # belty
 General purpose utility belt
 
-## API
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
 
+- [API](#api)
+  - [identity(arg?)](#identityarg)
+  - [noop](#noop)
+  - [pick(input, keys)](#pickinput-keys)
+  - [omit(input, keys)](#omitinput-keys)
+  - [extend(target, ...)](#extendtarget-)
+  - [merge(target, ...sources, transform)](#mergetarget-sources-transform)
+  - [isMatch(input, criteria)](#ismatchinput-criteria)
+  - [find(input, predicate)](#findinput-predicate)
+  - [findAll(input, predicate)](#findallinput-predicate)
+  - [value(input, keypath, transform)](#valueinput-keypath-transform)
+  - [values(input)](#valuesinput)
+  - [toArray(...)](#toarray)
+  - [arrayToObject(input, val)](#arraytoobjectinput-val)
+- [License](#license)
 
-### identity(arg?)
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# API
+
+## identity(arg?)
 
 Helper method that returns the first argument passed in.
 
@@ -18,7 +39,7 @@ assert(identity(input) === input);
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### noop
+## noop
 
 noop method! It takes no arguments and does not return anything. Useful when you need to setup an initial placeholder function.
 
@@ -27,10 +48,9 @@ var input = 3.14;
 assert(noop(input) === undefined);
 ```
 
-
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### pick(input, keys)
+## pick(input, keys)
 
 > Alias `pluck`
 
@@ -57,10 +77,9 @@ var result = pick(input, ["first", "id", "something that does not exist"]);
 // }
 ```
 
-
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### omit(input, keys)
+## omit(input, keys)
 
 Pulls out all the items in the input that are **not** in `keys` and returns a new object with just that.
 
@@ -87,10 +106,9 @@ var result = omit(input, ["first"]);
 // }
 ```
 
-
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### extend(target, ...)
+## extend(target, ...)
 
 Shallow copies all properties from the input objects (sources) into the target object. Source objects are processed left to right overriding whatever values already exist in the result.
 
@@ -128,10 +146,9 @@ var result = extend({}, input1, input2);
 //}
 ```
 
-
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### merge(target, ...sources, transform)
+## merge(target, ...sources, transform)
 
 Deep copy all properties from the input objects (sources) into the target object. It merges objects and arrays into new structures from left to right overriding all other non array/object properties.
 
@@ -189,10 +206,9 @@ function transform(current, next) {
 // }
 ```
 
-
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### isMatch(input, criteria)
+## isMatch(input, criteria)
 
 Deep comparisson of object structures recursively matching all properties in criteria with the input. If everything in the criteria matches the input, then isMatch returns true. Otherwise it returns false.
 
@@ -242,7 +258,7 @@ isMatch(input, {
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### find(input, predicate)
+## find(input, predicate)
 
 Find the first item in the input for which the predicate function returns true for. When the predicate is not a function, isMatch is called with the predicate as the matching criteria.
 
@@ -252,7 +268,8 @@ Predicate functions are called with item, index, and original collection.
 - **@param** { object | array | string | number | function } predicate - When the predicate is a function then that is called. Otherwise, isMatch is used to deeply match object structures. The result is the first item the predicate returns true for.
 - **@returns** { Object } First item to match the predicate
 
-##### Example with an input array
+Example with an input array
+
 ``` javascript
 var input = [{
   city: "DET",
@@ -272,7 +289,8 @@ findAll(input, {
 });
 ```
 
-##### Example with an input object
+Example with an input object
+
 ``` javascript
 var input = {
   item1: {
@@ -298,7 +316,7 @@ findAll(input, {
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### findAll(input, predicate)
+## findAll(input, predicate)
 
 Returns an array with all the items for which the predicate function returns true for. Or in the case when the predicate is not a function, isMatch is called with predicate as the matching criteria.
 
@@ -309,7 +327,8 @@ Predicate functions are called with item, index, and original collection.
 - **@returns** { array } Collection of items that match the predicate.
 
 
-##### Example with an input array
+Example with an input array
+
 ``` javascript
 var input = [{
   city: "DET",
@@ -329,7 +348,8 @@ findAll(input, {
 });
 ```
 
-##### Example with an input object
+Example with an input object
+
 ``` javascript
 var input = {
   item1: {
@@ -353,10 +373,9 @@ findAll(input, {
 });
 ```
 
-
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### value(input, keypath, transform)
+## value(input, keypath, transform)
 
 > Alias objectValue
 
@@ -389,10 +408,9 @@ var result = value(input, ["car", "interior", "seats"]);
 // }
 ```
 
-
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### values(input)
+## values(input)
 
 > Alias objectValues
 
@@ -416,7 +434,7 @@ var result = values(input);
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### toArray(...)
+## toArray(...)
 
 Converts input items to an array.
 
@@ -490,10 +508,9 @@ var result = toArray(input1, input2);
 }]
 ```
 
-
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-### arrayToObject(input, val)
+## arrayToObject(input, val)
 
 Converts arrays to a literal objects with the array values as keys. You can optionally pass in a callback function that is called in order to generate the values that go in the final result. `val` can also just be anything to be used as the value for each entry in the final result, otherwise `true` is used.
 
@@ -550,4 +567,6 @@ function transform(value, key, array) {
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-# License MIT
+# License
+
+Licensed under MIT
