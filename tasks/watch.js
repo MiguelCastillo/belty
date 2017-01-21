@@ -2,8 +2,7 @@ var env = require("./env");
 
 module.exports = {
   test: {
-    files: ['src/**/*.js', 'test/**/*.js', '*.js'],
-    tasks: ['build'],
+    files: ['src/**/*.js'],
     options: {
       livereload: env.livereloadPortNumber
     }

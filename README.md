@@ -1,6 +1,8 @@
 # belty
 General purpose utility belt
 
+> as of v5.0.0, belty only has a minified bundle `dist/index.min.js`.
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
