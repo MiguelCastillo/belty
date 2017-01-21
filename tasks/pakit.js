@@ -1,7 +1,7 @@
 module.exports = {
   build: {
     files: {
-      'dist/index.js': ['src/index.js']
+      'dist/index.min.js': ['src/index.js']
     }
   }
 };
