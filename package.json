@@ -2,7 +2,7 @@
   "name": "belty",
   "version": "4.0.3",
   "dependencies": {
-    "dis-isa": "^1.2.2",
+    "dis-isa": "^1.2.3",
     "split-keypath": "^1.0.1"
   },
   "main": "src/index.js",
@@ -11,25 +11,27 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "bit-imports": "^2.0.1",
+    "bit-imports": "^3.0.2",
     "chai": "~3.5.0",
-    "chance": "^1.0.3",
-    "config-grunt-tasks": "^1.0.0",
-    "connect-livereload": "^0.5.4",
+    "chance": "^1.0.4",
+    "config-grunt-tasks": "^1.0.3",
+    "connect-livereload": "^0.6.0",
     "grunt": "~1.0.1",
-    "grunt-concurrent": "~2.3.0",
-    "grunt-contrib-connect": "~1.0.1",
+    "grunt-concurrent": "~2.3.1",
+    "grunt-contrib-connect": "~1.0.2",
     "grunt-contrib-watch": "~1.0.0",
     "grunt-mocha": "~1.0.2",
-    "grunt-pakit": "^0.2.1",
+    "grunt-pakit": "^0.2.2",
     "grunt-release": "^0.14.0",
-    "load-grunt-tasks": "^3.4.1",
-    "mocha": "~2.5.3",
+    "load-grunt-tasks": "^3.5.2",
+    "mocha": "~3.2.0",
     "pakit": "^0.3.2",
-    "sinon": "~1.17.3",
+    "sinon": "~1.17.7",
     "spromise": "^1.0.0"
   },
-  "browser": {},
+  "browser": {
+    
+  },
   "directories": {
     "test": "test"
   },
