@@ -1,5 +1,5 @@
 .travis.yml
-.eslintrc
+.eslintrc.json
 Gruntfile.js
 test
 tasks
