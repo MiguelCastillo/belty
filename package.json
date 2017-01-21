@@ -1,6 +1,6 @@
 {
   "name": "belty",
-  "version": "4.0.3",
+  "version": "5.0.0",
   "dependencies": {
     "dis-isa": "^1.2.3",
     "split-keypath": "^1.0.1"
@@ -29,9 +29,7 @@
     "sinon": "~1.17.7",
     "spromise": "^1.0.0"
   },
-  "browser": {
-    
-  },
+  "browser": {},
   "directories": {
     "test": "test"
   },
