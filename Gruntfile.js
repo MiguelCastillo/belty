@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   taskConfig.pkg = require("./package.json");
   grunt.initConfig(taskConfig);
 
-  grunt.registerTask("build", ["eslint:all", "browserify:build", "uglify:build"]);
+  grunt.registerTask("build", ["pakit:build"]);
   grunt.registerTask("serve", ["concurrent:test"]);
   grunt.registerTask("test", ["connect:test", "mocha:test"]);
 };

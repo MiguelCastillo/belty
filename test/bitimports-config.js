@@ -11,9 +11,6 @@ var System = (function() {
     "urlArgs": "bust=" + (new Date()).getTime()
   });
 
-  // Add modules to exclude from pipeline processing
-  importer.ignore(["chai"]);
-
   bitimports.logger.enable();
   return importer;
 })();
