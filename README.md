@@ -110,7 +110,10 @@ var result = omit(input, ["first"]);
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-## extend(target, ...)
+## assign(target, ...)
+
+> Alias `extend`
+
 
 Shallow copies all properties from the input objects (sources) into the target object. Source objects are processed left to right overriding whatever values already exist in the result.
 
@@ -133,7 +136,7 @@ var input2 = {
   }
 };
 
-var result = extend({}, input1, input2);
+var result = assign({}, input1, input2);
 
 // result is a shallow copy of the input. So changing anything in address
 // in the result will also change input.
