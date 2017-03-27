@@ -17,7 +17,7 @@ module.exports = {
   pick: pick,
   omit: omit,
   assign: assign,
-  extend: extend,
+  extend: assign,
   merge: merge,
   findAll: findAll,
   identity: identity,
