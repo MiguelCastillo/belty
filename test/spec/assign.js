@@ -1,11 +1,11 @@
-var extend = require("src/extend");
+var assign = require("src/assign");
 
 describe("extend Suite", function() {
   describe("when `extend` into an empty target object", function() {
     describe("no object", function() {
       var result;
       beforeEach(function() {
-        result = extend();
+        result = assign();
       });
 
       it("then result is an object", function() {
@@ -21,7 +21,7 @@ describe("extend Suite", function() {
       var result, target;
       beforeEach(function() {
         target = {};
-        result = extend(target);
+        result = assign(target);
       });
 
       it("then result and target are the same object", function() {
@@ -42,7 +42,7 @@ describe("extend Suite", function() {
         var result, target;
         beforeEach(function() {
           target = {};
-          result = extend(target, {"one": "dont"}, {"two": "twotest", "one": "onetest"}, {"two": "twotest", "one": "twotest"});
+          result = assign(target, {"one": "dont"}, {"two": "twotest", "one": "onetest"}, {"two": "twotest", "one": "twotest"});
         });
 
         it("then result and target are the same object", function() {
@@ -69,7 +69,7 @@ describe("extend Suite", function() {
     describe("an empty object", function() {
       var result;
       beforeEach(function() {
-        result = extend({"one": "dont"}, {"one": "do", "two": "it"});
+        result = assign({"one": "dont"}, {"one": "do", "two": "it"});
       });
 
       it("then result is an object", function() {
@@ -84,7 +84,7 @@ describe("extend Suite", function() {
     describe("two different objects with property 'one' in all of them", function() {
       var result;
       beforeEach(function() {
-        result = extend({"one": "dont"}, {"two": "twotest", "one": "onetest"}, {"two": "twotest", "one": "twotest"});
+        result = assign({"one": "dont"}, {"two": "twotest", "one": "onetest"}, {"two": "twotest", "one": "twotest"});
       });
 
       it("result is an object", function() {

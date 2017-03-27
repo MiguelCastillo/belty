@@ -1,6 +1,6 @@
 var pick = require("./pick");
 var omit = require("./omit");
-var extend = require("./extend");
+var assign = require("./assign");
 var merge = require("./merge");
 var findAll = require("./findAll");
 var identity = require("./identity");
@@ -16,6 +16,7 @@ module.exports = {
   pluck: pick,
   pick: pick,
   omit: omit,
+  assign: assign,
   extend: extend,
   merge: merge,
   findAll: findAll,

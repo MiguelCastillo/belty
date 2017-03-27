@@ -1,5 +1,5 @@
 require("test/spec/arrayToObject");
-require("test/spec/extend");
+require("test/spec/assign");
 require("test/spec/merge");
 require("test/spec/identity");
 require("test/spec/noop");
