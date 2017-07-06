@@ -171,7 +171,7 @@ describe("find Suite", function() {
         });
 
         it("then result is empty", function() {
-          expect(result).to.be.empty;
+          expect(result).to.be.undefined;
         });
       });
 
@@ -185,7 +185,7 @@ describe("find Suite", function() {
         });
 
         it("then the result is empty", function() {
-          expect(result).to.be.empty;
+          expect(result).to.be.undefined;
         });
       });
     });
@@ -228,7 +228,7 @@ describe("find Suite", function() {
         });
 
         it("then the result is empty", function() {
-          expect(result).to.be.empty;
+          expect(result).to.be.undefined;
         });
       });
 
