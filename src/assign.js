@@ -8,16 +8,18 @@
  *
  * @returns {object} Object with all source objects merged in.
  */
-function extend(target) {
+function assign(target) {
+  var sources = Array.prototype.slice.call(arguments, 1);
+  var transform = sources.length > 1 && typeof sources[sources.length - 1] === "function" ? sources.pop() : identity;
   var source, length, i;
   target = target || {};
 
   // Allow n params to be passed in to extend this object
-  for (i = 1, length  = arguments.length; i < length; i++) {
-    source = arguments[i];
+  for (i = 0, length  = sources.length; i < length; i++) {
+    source = sources[i];
     for (var property in source) {
       if (source.hasOwnProperty(property)) {
-        target[property] = source[property];
+        target[property] = transform(target[property], source[property]);
       }
     }
   }
@@ -25,4 +27,8 @@ function extend(target) {
   return target;
 }
 
-module.exports = Object.assign || extend;
+function identity(t, s) {
+  return s;
+}
+
+module.exports = assign;
