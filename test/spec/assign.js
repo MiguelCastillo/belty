@@ -1,7 +1,7 @@
 var assign = require("src/assign");
 
-describe("extend Suite", function() {
-  describe("when `extend` into an empty target object", function() {
+describe("assign Suite", function() {
+  describe("when `assign` into an empty target object", function() {
     describe("no object", function() {
       var result;
       beforeEach(function() {
@@ -65,8 +65,8 @@ describe("extend Suite", function() {
   });
 
 
-  describe("when `extend` into a non empty target object", function() {
-    describe("an empty object", function() {
+  describe("when `assign` into a non empty target object", function() {
+    describe("an object with two properties", function() {
       var result;
       beforeEach(function() {
         result = assign({"one": "dont"}, {"one": "do", "two": "it"});

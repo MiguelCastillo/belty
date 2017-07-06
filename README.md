@@ -12,7 +12,7 @@ General purpose utility belt
   - [noop](#noop)
   - [pick(input, keys)](#pickinput-keys)
   - [omit(input, keys)](#omitinput-keys)
-  - [extend(target, ...)](#extendtarget-)
+  - [assign(target, ...sources, transform)](#assigntarget-sources-transform)
   - [merge(target, ...sources, transform)](#mergetarget-sources-transform)
   - [isMatch(input, criteria)](#ismatchinput-criteria)
   - [find(input, predicate)](#findinput-predicate)
@@ -110,7 +110,7 @@ var result = omit(input, ["first"]);
 
 <hr style="border-bottom: 1px solid #dedede;"/>
 
-## assign(target, ...)
+## assign(target, ...sources, transform)
 
 > Alias `extend`
 
@@ -118,7 +118,9 @@ var result = omit(input, ["first"]);
 Shallow copies all properties from the input objects (sources) into the target object. Source objects are processed left to right overriding whatever values already exist in the result.
 
 - **@param** {object} *target* - Object to copy properties to.
-- **@param** {...} *source* - The source objects to be merged into the target object
+- **@param** {...} *source* - The source objects to be merged into the target object.
+- **@param** {function} *transform* - Transform function called with current and next value in order to generate the final value for the particular object entry.
+
 - **@returns** {object} Object with all source objects merged in.
 
 
@@ -159,7 +161,7 @@ Deep copy all properties from the input objects (sources) into the target object
 
 - **@param** {object} *target* - Object to copy properties to
 - **@param** {...object} *sources* - The list of source objects to be merged into the target object
-- **@param** {function} *transform* - Transform function called with current and next value, as well as the key in order to generate the final value for the particular object entry. The transform is only called with top level objects currently being processed.
+- **@param** {function} *transform* - Transform function called with current and next value in order to generate the final value for the particular object entry. The transform is only called with top level objects currently being processed.
 - **@returns** {object} Object with all source objects merged in.
 
 ``` javascript
