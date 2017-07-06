@@ -81,12 +81,7 @@ function clone(target, source) {
 function merge(target) {
   target = target || {};
   var sources = Array.prototype.slice.call(arguments, 1);
-  var transform = baseTransform;
-
-  if (types.isFunction(sources[sources.length - 1])) {
-    transform = sources[sources.length - 1];
-    sources.pop();
-  }
+  var transform = types.isFunction(sources[sources.length - 1]) ? sources.pop() : baseTransform;
 
   // Allow `n` params to be passed in to extend this object
   for (var i = 0, length  = sources.length; i < length; i++) {
