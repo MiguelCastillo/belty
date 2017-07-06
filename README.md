@@ -12,7 +12,7 @@ General purpose utility belt
   - [noop](#noop)
   - [pick(input, keys)](#pickinput-keys)
   - [omit(input, keys)](#omitinput-keys)
-  - [extend(target, ...)](#extendtarget-)
+  - [assign(target, ...sources, transform)](#assigntarget-sources-transform)
   - [merge(target, ...sources, transform)](#mergetarget-sources-transform)
   - [isMatch(input, criteria)](#ismatchinput-criteria)
   - [find(input, predicate)](#findinput-predicate)
