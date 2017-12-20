@@ -28,7 +28,20 @@ function arrayToObject(input, val) {
   }
 
   return input.reduce(function(container, value, key) {
-    container[value] = val ? val(value, key, input) : defaultValue;
+    var _key = value, _value = defaultValue;
+
+    if (val) {
+      var result = val(value, key, input);
+      if (types.isArray(result)) {
+        _key = result[0];
+        _value = result[1];
+      }
+      else {
+        _value = result;
+      }
+    }
+
+    container[_key] = _value;
     return container;
   }, {});
 }
