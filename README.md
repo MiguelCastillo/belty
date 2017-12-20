@@ -1,6 +1,7 @@
 # belty
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/MiguelCastillo/belty.svg)](https://greenkeeper.io/)
+
 General purpose utility belt
 
 > as of v5.0.0, belty only generates a minified bundle `dist/index.js`.
