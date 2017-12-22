@@ -1,4 +1,5 @@
 var find = require("../../src/find");
+var expect = require("chai").expect;
 var chanceFactory = require("chance");
 var chance = chanceFactory();
 

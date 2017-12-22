@@ -1,4 +1,5 @@
-var identity = require("src/identity");
+var identity = require("../../src/identity");
+var expect = require("chai").expect;
 
 describe("Identity Suite", function() {
   describe("when calling `noop`", function() {

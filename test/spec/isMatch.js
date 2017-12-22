@@ -1,4 +1,5 @@
 var isMatch = require("../../src/isMatch");
+var expect = require("chai").expect;
 var chanceFactory = require("chance");
 var chance = chanceFactory();
 

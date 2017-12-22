@@ -1,4 +1,5 @@
-var merge = require("src/merge");
+var merge = require("../../src/merge");
+var expect = require("chai").expect;
 var date = new Date();
 
 describe("merge Suite", function() {

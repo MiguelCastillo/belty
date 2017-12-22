@@ -1,4 +1,5 @@
-var toArray = require("src/toArray");
+var toArray = require("../../src/toArray");
+var expect = require("chai").expect;
 
 describe("toArray Test Suite", function() {
   var act, result, inputs;

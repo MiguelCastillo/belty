@@ -1,4 +1,6 @@
-var value = require("src/value");
+var value = require("../../src/value");
+var expect = require("chai").expect;
+var sinon = require("sinon");
 
 describe("value Test Suite", function() {
   describe("when calling `value`", function() {

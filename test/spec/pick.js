@@ -1,6 +1,5 @@
-/*jshint -W030 */
-
-var pick = require("src/pick");
+var pick = require("../../src/pick");
+var expect = require("chai").expect;
 
 describe("pick Suite", function() {
   describe("when calling `pick`", function() {

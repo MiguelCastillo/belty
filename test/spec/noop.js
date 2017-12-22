@@ -1,4 +1,5 @@
-var noop = require("src/noop");
+var noop = require("../../src/noop");
+var expect = require("chai").expect;
 
 describe("noop Suite", function() {
   describe("when calling `noop`", function() {

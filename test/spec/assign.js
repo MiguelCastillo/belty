@@ -1,4 +1,5 @@
-var assign = require("src/assign");
+var assign = require("../../src/assign");
+var expect = require("chai").expect;
 
 describe("assign Suite", function() {
   describe("when `assign` into an empty target object", function() {
