@@ -1,4 +1,6 @@
-var arrayToObject = require("src/arrayToObject");
+var arrayToObject = require("../../src/arrayToObject");
+var expect = require("chai").expect;
+var sinon = require("sinon");
 
 describe("arrayToObject suite", function() {
   describe("When converting an array to an object", function() {

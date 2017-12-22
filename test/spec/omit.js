@@ -1,6 +1,5 @@
-/*jshint -W030 */
-
-var omit = require("src/omit");
+var omit = require("../../src/omit");
+var expect = require("chai").expect;
 
 describe("omit Suite", function() {
   describe("when calling `omit`", function() {
