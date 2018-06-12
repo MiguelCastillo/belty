@@ -1,7 +1,9 @@
 {
   "name": "belty",
-  "version": "5.2.1",
-  "engines" : { "node" : ">=6" },
+  "version": "5.2.2",
+  "engines": {
+    "node": ">=6"
+  },
   "dependencies": {
     "dis-isa": "^1.3.2",
     "split-keypath": "^1.0.1"
