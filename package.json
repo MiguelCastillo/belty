@@ -25,7 +25,7 @@
     "grunt-mocha": "~1.0.4",
     "grunt-pakit": "^0.2.2",
     "grunt-release": "^0.14.0",
-    "load-grunt-tasks": "^4.0.0",
+    "load-grunt-tasks": "^5.1.0",
     "mocha": "~5.2.0",
     "pakit": "^1.0.0",
     "sinon": "~6.0.0",
